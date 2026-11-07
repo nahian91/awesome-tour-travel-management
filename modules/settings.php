@@ -143,33 +143,33 @@ if ($wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $table_coupons)) === $t
 .nttbs-settings-canvas {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    animation: nteFadeIn 0.25s ease-out;
+    gap: 24px;
+    animation: nttbsFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
-@keyframes nteFadeIn {
-    from { opacity: 0; transform: translateY(4px); }
+@keyframes nttbsFadeIn {
+    from { opacity: 0; transform: translateY(6px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
 /* Executive Hero */
 .nttbs-settings-hero {
-    background: var(--bg-surface);
-    border: 1px solid var(--border-light);
-    border-radius: 12px;
+    background: var(--nttbs-bg-card);
+    border: 1px solid var(--nttbs-border);
+    border-radius: 14px;
     padding: 24px 28px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--nttbs-shadow-sm);
     gap: 20px;
 }
 .nttbs-hero-badge {
     display: inline-block;
     font-size: 11px;
     font-weight: 800;
-    color: var(--c-blue);
-    background: var(--c-blue-bg);
-    border: 1px solid var(--c-blue-border);
+    color: var(--nttbs-primary-dark);
+    background: var(--nttbs-primary-subtle);
+    border: 1px solid var(--nttbs-primary-border);
     padding: 3px 9px;
     border-radius: 6px;
     text-transform: uppercase;
@@ -178,14 +178,14 @@ if ($wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $table_coupons)) === $t
 }
 .nttbs-hero-dossier h2 {
     font-size: 22px;
-    font-weight: 900;
-    color: var(--text-main);
+    font-weight: 800;
+    color: var(--nttbs-text-heading);
     margin: 0 0 6px 0;
     letter-spacing: -0.3px;
 }
 .nttbs-hero-dossier p {
     font-size: 13px;
-    color: var(--text-muted);
+    color: var(--nttbs-text-muted);
     margin: 0;
     line-height: 1.5;
 }
@@ -195,26 +195,27 @@ if ($wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $table_coupons)) === $t
     flex-shrink: 0;
 }
 .nttbs-telemetry-badge {
-    background: var(--bg-subtle);
-    border: 1px solid var(--border-light);
-    border-radius: 10px;
-    padding: 12px 18px;
+    background: var(--nttbs-bg-body);
+    border: 1px solid var(--nttbs-border);
+    border-radius: 12px;
+    padding: 14px 20px;
     text-align: center;
-    min-width: 110px;
+    min-width: 120px;
 }
-.nttbs-telemetry-badge .t-label {
+.nttbs-telemetry-badge .nttbs-t-label {
     display: block;
-    font-size: 10px;
+    font-size: 10.5px;
     font-weight: 800;
-    color: var(--text-muted);
+    color: var(--nttbs-text-muted);
     text-transform: uppercase;
-    letter-spacing: 0.4px;
+    letter-spacing: 0.5px;
     margin-bottom: 4px;
 }
-.nttbs-telemetry-badge .t-value {
+.nttbs-telemetry-badge .nttbs-t-value {
     font-size: 16px;
-    font-weight: 900;
-    color: var(--text-main);
+    font-weight: 800;
+    color: var(--nttbs-text-heading);
+    font-family: 'JetBrains Mono', monospace;
 }
 
 /* Nav Strip */
@@ -222,8 +223,8 @@ if ($wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $table_coupons)) === $t
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid var(--border-light);
-    padding-bottom: 16px;
+    border-bottom: 1px solid var(--nttbs-border);
+    padding-bottom: 18px;
     gap: 12px;
     flex-wrap: wrap;
 }
@@ -236,35 +237,37 @@ if ($wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $table_coupons)) === $t
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 8px 16px;
-    border-radius: 8px;
+    padding: 9px 18px;
+    border-radius: 10px;
     font-size: 13px;
     font-weight: 700;
     text-decoration: none;
-    background: var(--bg-surface);
-    color: var(--text-muted);
-    border: 1px solid var(--border-light);
-    transition: all 0.15s ease;
+    background: var(--nttbs-bg-card);
+    color: var(--nttbs-text-muted);
+    border: 1px solid var(--nttbs-border);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .nttbs-subnav-tab:hover {
-    color: var(--text-main);
-    background: var(--bg-subtle);
+    color: var(--nttbs-text-heading);
+    background: var(--nttbs-bg-hover);
+    transform: translateY(-1px);
 }
 .nttbs-subnav-tab.active {
-    background: var(--c-blue);
+    background: linear-gradient(135deg, var(--nttbs-primary), var(--nttbs-primary-dark));
     color: #ffffff;
-    border-color: var(--c-blue);
-    box-shadow: var(--shadow-sm);
+    border-color: transparent;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
 }
-.nttbs-subnav-tab .tab-chip {
-    background: var(--bg-subtle);
+.nttbs-subnav-tab .nttbs-tab-chip {
+    background: var(--nttbs-bg-hover);
     font-size: 11px;
     font-weight: 800;
-    padding: 2px 7px;
+    padding: 2px 8px;
     border-radius: 999px;
-    color: var(--text-main);
+    color: var(--nttbs-text-heading);
+    font-family: 'JetBrains Mono', monospace;
 }
-.nttbs-subnav-tab.active .tab-chip {
+.nttbs-subnav-tab.active .nttbs-tab-chip {
     background: rgba(255, 255, 255, 0.25);
     color: #ffffff;
 }
@@ -272,27 +275,27 @@ if ($wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $table_coupons)) === $t
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    font-size: 12px;
+    font-size: 12.5px;
     font-weight: 700;
-    padding: 6px 14px;
+    padding: 7px 16px;
     border-radius: 8px;
 }
 .nttbs-alert-pill.saved {
-    background: var(--c-emerald-bg);
-    color: var(--c-emerald);
-    border: 1px solid var(--c-emerald-border);
+    background: var(--nttbs-emerald-subtle);
+    color: var(--nttbs-emerald);
+    border: 1px solid var(--nttbs-emerald-border);
 }
 .nttbs-alert-pill.deleted {
-    background: var(--c-rose-bg);
-    color: var(--c-rose);
-    border: 1px solid var(--c-rose-border);
+    background: var(--nttbs-rose-subtle);
+    color: var(--nttbs-rose);
+    border: 1px solid var(--nttbs-rose-border);
 }
 
 /* Layout Grids */
 .nttbs-stage-grid {
     display: grid;
     grid-template-columns: minmax(0, 2.2fr) minmax(0, 1fr);
-    gap: 22px;
+    gap: 24px;
     align-items: start;
 }
 .nttbs-stage-grid.reverse-split {
@@ -301,87 +304,88 @@ if ($wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $table_coupons)) === $t
 
 /* Cards */
 .nttbs-pro-card {
-    background: var(--bg-surface);
-    border: 1px solid var(--border-light);
-    border-radius: 12px;
+    background: var(--nttbs-bg-card);
+    border: 1px solid var(--nttbs-border);
+    border-radius: 14px;
     overflow: hidden;
-    box-shadow: var(--shadow-sm);
-    margin-bottom: 20px;
+    box-shadow: var(--nttbs-shadow-sm);
+    margin-bottom: 22px;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
 }
 .nttbs-pro-card:last-child {
     margin-bottom: 0;
 }
+.nttbs-pro-card:hover {
+    box-shadow: var(--nttbs-shadow-md);
+}
 .nttbs-pro-card-header {
-    padding: 16px 20px;
-    border-bottom: 1px solid var(--border-light);
-    background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(0,0,0,0.02) 100%);
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--nttbs-border);
+    background: linear-gradient(180deg, #ffffff 0%, var(--nttbs-bg-body) 100%);
 }
 .nttbs-pro-card-header h3 {
-    font-size: 14px;
+    font-size: 14.5px;
     font-weight: 800;
-    color: var(--text-main);
+    color: var(--nttbs-text-heading);
     margin: 0 0 4px 0;
+    letter-spacing: -0.2px;
 }
 .nttbs-pro-card-header p {
     font-size: 12px;
-    color: var(--text-muted);
+    color: var(--nttbs-text-muted);
     margin: 0;
 }
 .nttbs-pro-card-body {
-    padding: 20px;
+    padding: 24px;
 }
 .nttbs-pro-card-footer {
-    padding: 14px 20px;
-    background: var(--bg-subtle);
-    border-top: 1px solid var(--border-light);
+    padding: 16px 24px;
+    background: var(--nttbs-bg-body);
+    border-top: 1px solid var(--nttbs-border);
     text-align: right;
 }
 
 /* Forms */
-.nttbs-row { margin-bottom: 16px; }
+.nttbs-row { margin-bottom: 18px; }
 .nttbs-row:last-child { margin-bottom: 0; }
 .nttbs-split-2 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-    margin-bottom: 16px;
+    gap: 18px;
+    margin-bottom: 18px;
 }
 .nttbs-split-2:last-child { margin-bottom: 0; }
 .nttbs-form-label {
     display: block;
     font-size: 12px;
-    font-weight: 800;
-    color: var(--text-main);
+    font-weight: 700;
+    color: var(--nttbs-text-heading);
     margin-bottom: 6px;
 }
 .nttbs-pro-input {
     width: 100%;
     padding: 10px 14px;
-    border: 1px solid #cbd5e1;
-    border-radius: 8px;
-    font-size: 13px;
-    color: var(--text-main);
-    background: #ffffff;
+    border: 1px solid var(--nttbs-border);
+    border-radius: 10px;
+    font-size: 13.5px;
+    font-family: inherit;
+    color: var(--nttbs-text-heading);
+    background-color: var(--nttbs-bg-card);
     box-sizing: border-box;
     transition: all 0.15s ease;
 }
-:root[data-theme="dark"] .nttbs-pro-input {
-    background-color: #0f172a;
-    border-color: #475569;
-    color: #f8fafc;
-}
 .nttbs-pro-input:focus {
     outline: none;
-    border-color: var(--c-blue);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    border-color: var(--nttbs-primary);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
 .nttbs-input-hint {
     display: block;
-    font-size: 11px;
-    color: var(--text-muted);
-    margin-top: 5px;
+    font-size: 11.5px;
+    color: var(--nttbs-text-muted);
+    margin-top: 6px;
 }
-.font-mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+.font-mono { font-family: 'JetBrains Mono', monospace; }
 .uppercase { text-transform: uppercase; }
 
 /* Affixes */
@@ -390,56 +394,63 @@ if ($wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $table_coupons)) === $t
     display: flex;
     align-items: center;
 }
-.nttbs-input-affix .nttbs-pro-input { padding-right: 32px; }
-.affix-tag {
+.nttbs-input-affix .nttbs-pro-input { padding-right: 36px; }
+.nttbs-affix-tag {
     position: absolute;
-    right: 12px;
+    right: 14px;
     font-size: 13px;
     font-weight: 800;
-    color: var(--text-muted);
+    color: var(--nttbs-text-muted);
     pointer-events: none;
 }
 
 /* Action Buttons */
 .nttbs-btn-action {
-    background: var(--c-blue);
+    background: linear-gradient(135deg, var(--nttbs-primary), var(--nttbs-primary-dark));
     color: #ffffff;
     border: none;
-    padding: 10px 18px;
-    border-radius: 8px;
-    font-size: 13px;
-    font-weight: 800;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 13.5px;
+    font-weight: 700;
     cursor: pointer;
-    transition: background 0.15s ease;
+    box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.nttbs-btn-action:hover { background: #1d4ed8; }
+.nttbs-btn-action:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+}
+.nttbs-btn-action:active {
+    transform: translateY(0);
+}
 .nttbs-btn-action.full-width { width: 100%; }
 
 /* Switches */
 .nttbs-switch-group {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 14px;
 }
 .nttbs-switch-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: var(--bg-subtle);
-    border: 1px solid var(--border-light);
-    border-radius: 10px;
-    padding: 14px 18px;
+    background: var(--nttbs-bg-body);
+    border: 1px solid var(--nttbs-border);
+    border-radius: 12px;
+    padding: 16px 20px;
 }
-.switch-meta .switch-title {
+.nttbs-switch-meta .nttbs-switch-title {
     display: block;
-    font-size: 13px;
+    font-size: 13.5px;
     font-weight: 800;
-    color: var(--text-main);
-    margin-bottom: 2px;
+    color: var(--nttbs-text-heading);
+    margin-bottom: 3px;
 }
-.switch-meta .switch-desc {
-    font-size: 11px;
-    color: var(--text-muted);
+.nttbs-switch-meta .nttbs-switch-desc {
+    font-size: 11.5px;
+    color: var(--nttbs-text-muted);
 }
 .nttbs-toggle {
     position: relative;
@@ -449,7 +460,7 @@ if ($wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $table_coupons)) === $t
     flex-shrink: 0;
 }
 .nttbs-toggle input { opacity: 0; width: 0; height: 0; }
-.toggle-slider {
+.nttbs-toggle-slider {
     position: absolute;
     cursor: pointer;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -457,7 +468,7 @@ if ($wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $table_coupons)) === $t
     transition: .2s cubic-bezier(0.16, 1, 0.3, 1);
     border-radius: 999px;
 }
-.toggle-slider:before {
+.nttbs-toggle-slider:before {
     position: absolute;
     content: "";
     height: 18px;
@@ -467,49 +478,50 @@ if ($wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $table_coupons)) === $t
     background-color: white;
     transition: .2s cubic-bezier(0.16, 1, 0.3, 1);
     border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
 }
-.nttbs-toggle input:checked + .toggle-slider {
-    background-color: var(--c-emerald);
+.nttbs-toggle input:checked + .nttbs-toggle-slider {
+    background-color: var(--nttbs-emerald);
 }
-.nttbs-toggle input:checked + .toggle-slider:before {
+.nttbs-toggle input:checked + .nttbs-toggle-slider:before {
     transform: translateX(20px);
 }
 
 /* Guidelines Sidebar Card */
 .nttbs-guideline-card {
-    background: var(--bg-surface);
-    border: 1px solid var(--border-light);
-    border-left: 4px solid var(--c-blue);
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: var(--shadow-sm);
+    background: var(--nttbs-bg-card);
+    border: 1px solid var(--nttbs-border);
+    border-left: 4px solid var(--nttbs-primary);
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: var(--nttbs-shadow-sm);
 }
 .nttbs-guideline-card.accent-emerald {
-    border-left-color: var(--c-emerald);
+    border-left-color: var(--nttbs-emerald);
 }
-.guide-header {
+.nttbs-guide-header {
     display: flex;
     align-items: center;
     gap: 8px;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
 }
-.guide-header h4 {
+.nttbs-guide-header h4 {
     margin: 0;
-    font-size: 13px;
+    font-size: 13.5px;
     font-weight: 800;
-    color: var(--text-main);
+    color: var(--nttbs-text-heading);
 }
-.guide-list {
+.nttbs-guide-list {
     margin: 0;
     padding-left: 18px;
-    font-size: 12px;
-    color: var(--text-muted);
+    font-size: 12.5px;
+    color: var(--nttbs-text-muted);
     line-height: 1.6;
 }
-.guide-para {
-    font-size: 12px;
-    color: var(--text-muted);
-    line-height: 1.5;
+.nttbs-guide-para {
+    font-size: 12.5px;
+    color: var(--nttbs-text-muted);
+    line-height: 1.6;
     margin: 0;
 }
 
@@ -525,127 +537,132 @@ if ($wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $table_coupons)) === $t
     text-align: left;
 }
 .nttbs-corporate-table th {
-    padding: 11px 16px;
+    padding: 12px 20px;
     font-size: 11px;
     font-weight: 800;
-    color: var(--text-muted);
+    color: var(--nttbs-text-muted);
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    background: var(--bg-subtle);
-    border-bottom: 1px solid var(--border-light);
+    letter-spacing: 0.6px;
+    background: var(--nttbs-bg-body);
+    border-bottom: 1px solid var(--nttbs-border);
+    white-space: nowrap;
 }
 .nttbs-corporate-table td {
-    padding: 14px 16px;
+    padding: 15px 20px;
     font-size: 13px;
-    color: var(--text-main);
-    border-bottom: 1px solid var(--border-light);
+    color: var(--nttbs-text-body);
+    border-bottom: 1px solid var(--nttbs-border);
     vertical-align: middle;
+    transition: background-color 0.12s ease;
 }
 .nttbs-corporate-table tr:last-child td { border-bottom: none; }
 .nttbs-corporate-table tr:hover td {
-    background-color: var(--bg-subtle);
+    background-color: var(--nttbs-bg-hover);
 }
 
-.voucher-token-box {
-    background: var(--c-blue-bg);
-    color: var(--c-blue);
-    border: 1px solid var(--c-blue-border);
-    padding: 3px 8px;
+.nttbs-voucher-token-box {
+    background: var(--nttbs-primary-subtle);
+    color: var(--nttbs-primary-dark);
+    border: 1px solid var(--nttbs-primary-border);
+    padding: 4px 8px;
     border-radius: 6px;
     font-weight: 800;
     font-size: 12px;
-    font-family: ui-monospace, monospace;
+    font-family: 'JetBrains Mono', monospace;
 }
-.weight-tag {
+.nttbs-weight-tag {
     font-weight: 800;
-    color: var(--text-main);
+    color: var(--nttbs-text-heading);
+    font-family: 'JetBrains Mono', monospace;
 }
-.quota-progress-cluster {
+.nttbs-quota-progress-cluster {
     display: flex;
     align-items: center;
     gap: 10px;
 }
-.quota-bar {
+.nttbs-quota-bar {
     width: 80px;
     height: 6px;
-    background: var(--bg-subtle);
-    border: 1px solid var(--border-light);
+    background: var(--nttbs-border-subtle);
+    border: 1px solid var(--nttbs-border);
     border-radius: 999px;
     overflow: hidden;
 }
-.quota-fill {
+.nttbs-quota-fill {
     height: 100%;
-    background: var(--c-blue);
+    background: var(--nttbs-primary);
     border-radius: 999px;
 }
-.quota-text {
-    font-size: 11px;
+.nttbs-quota-text {
+    font-size: 11.5px;
     font-weight: 700;
-    color: var(--text-muted);
-    font-variant-numeric: tabular-nums;
+    color: var(--nttbs-text-muted);
+    font-family: 'JetBrains Mono', monospace;
 }
-.btn-revoke-inline {
-    color: var(--c-rose);
-    font-weight: 800;
+.nttbs-btn-revoke-inline {
+    color: var(--nttbs-rose);
+    font-weight: 700;
     text-decoration: none;
-    font-size: 11px;
-    background: var(--c-rose-bg);
-    border: 1px solid var(--c-rose-border);
-    padding: 4px 8px;
+    font-size: 11.5px;
+    background: var(--nttbs-rose-subtle);
+    border: 1px solid var(--nttbs-rose-border);
+    padding: 5px 10px;
     border-radius: 6px;
     transition: all 0.15s ease;
+    display: inline-block;
 }
-.btn-revoke-inline:hover {
-    background: var(--c-rose);
+.nttbs-btn-revoke-inline:hover {
+    background: var(--nttbs-rose);
     color: #ffffff;
 }
-.empty-cell {
+.nttbs-empty-cell {
     text-align: center;
-    padding: 36px !important;
-    color: var(--text-muted);
+    padding: 44px 20px !important;
+    color: var(--nttbs-text-muted);
 }
 
 /* Diagnostics */
 .nttbs-corporate-table.diagnostics td { padding: 16px 20px; }
-.metric-label { width: 260px; font-weight: 800; color: var(--text-main); font-size: 13px; }
-.sys-code {
-    background: var(--bg-subtle);
-    border: 1px solid var(--border-light);
-    padding: 3px 8px;
+.nttbs-metric-label { width: 260px; font-weight: 800; color: var(--nttbs-text-heading); font-size: 13px; }
+.nttbs-sys-code {
+    background: var(--nttbs-bg-body);
+    border: 1px solid var(--nttbs-border);
+    padding: 4px 8px;
     border-radius: 6px;
     font-weight: 800;
-    color: var(--text-main);
+    color: var(--nttbs-text-heading);
     font-size: 12px;
-    font-family: ui-monospace, monospace;
+    font-family: 'JetBrains Mono', monospace;
 }
-.metric-sub {
-    font-size: 11px;
-    color: var(--text-muted);
+.nttbs-metric-sub {
+    font-size: 11.5px;
+    color: var(--nttbs-text-muted);
     margin-left: 8px;
 }
-.schema-chip-cluster {
+.nttbs-schema-chip-cluster {
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
 }
-.schema-chip {
-    background: var(--bg-subtle);
-    border: 1px solid var(--border-light);
+.nttbs-schema-chip {
+    background: var(--nttbs-purple-subtle);
+    border: 1px solid var(--nttbs-purple-border);
     padding: 3px 8px;
     border-radius: 6px;
     font-size: 11px;
-    font-family: ui-monospace, monospace;
-    color: var(--c-purple);
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--nttbs-purple);
+    font-weight: 600;
 }
 
 /* Badges */
 .nttbs-pill.confirmed {
     display: inline-flex;
     align-items: center;
-    gap: 4px;
-    background: var(--c-emerald-bg);
-    color: var(--c-emerald);
-    border: 1px solid var(--c-emerald-border);
+    gap: 5px;
+    background: var(--nttbs-emerald-subtle);
+    color: var(--nttbs-emerald);
+    border: 1px solid var(--nttbs-emerald-border);
     padding: 3px 8px;
     border-radius: 6px;
     font-size: 11px;
@@ -673,16 +690,16 @@ if ($wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $table_coupons)) === $t
         </div>
         <div class="nttbs-hero-telemetry-cluster">
             <div class="nttbs-telemetry-badge">
-                <span class="t-label"><?php esc_html_e('Fiscal Engine', 'nahian-tour-travel-booking-solution'); ?></span>
-                <span class="t-value"><?php echo esc_html($currency_code . ' (' . $currency . ')'); ?></span>
+                <span class="nttbs-t-label"><?php esc_html_e('Fiscal Engine', 'nahian-tour-travel-booking-solution'); ?></span>
+                <span class="nttbs-t-value"><?php echo esc_html($currency_code . ' (' . $currency . ')'); ?></span>
             </div>
             <div class="nttbs-telemetry-badge">
-                <span class="t-label"><?php esc_html_e('Voucher Registry', 'nahian-tour-travel-booking-solution'); ?></span>
-                <span class="t-value" style="color:var(--c-purple);"><?php echo count($coupons); ?> <?php esc_html_e('Active', 'nahian-tour-travel-booking-solution'); ?></span>
+                <span class="nttbs-t-label"><?php esc_html_e('Voucher Registry', 'nahian-tour-travel-booking-solution'); ?></span>
+                <span class="nttbs-t-value" style="color:var(--nttbs-purple);"><?php echo count($coupons); ?> <?php esc_html_e('Active', 'nahian-tour-travel-booking-solution'); ?></span>
             </div>
             <div class="nttbs-telemetry-badge">
-                <span class="t-label"><?php esc_html_e('Tax Policy', 'nahian-tour-travel-booking-solution'); ?></span>
-                <span class="t-value" style="color:var(--c-emerald);"><?php echo esc_html($tax); ?>%</span>
+                <span class="nttbs-t-label"><?php esc_html_e('Tax Policy', 'nahian-tour-travel-booking-solution'); ?></span>
+                <span class="nttbs-t-value" style="color:var(--nttbs-emerald);"><?php echo esc_html($tax); ?>%</span>
             </div>
         </div>
     </header>
@@ -692,24 +709,24 @@ if ($wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $table_coupons)) === $t
         <div class="nttbs-nav-left">
             <a href="<?php echo esc_url(admin_url('admin.php?page=nttbs-core&view=settings&subtab=general')); ?>" 
                class="nttbs-subnav-tab <?php echo $current_subtab === 'general' ? 'active' : ''; ?>">
-                <span class="tab-icon"><?php echo nttbs_svg_icon('settings', 16, 16); ?></span>
-                <span class="tab-label"><?php esc_html_e('General & Fiscal', 'nahian-tour-travel-booking-solution'); ?></span>
+                <span class="nttbs-tab-icon"><?php echo nttbs_svg_icon('settings', 16, 16); ?></span>
+                <span class="nttbs-tab-label"><?php esc_html_e('General & Fiscal', 'nahian-tour-travel-booking-solution'); ?></span>
             </a>
             <a href="<?php echo esc_url(admin_url('admin.php?page=nttbs-core&view=settings&subtab=gateways')); ?>" 
                class="nttbs-subnav-tab <?php echo $current_subtab === 'gateways' ? 'active' : ''; ?>">
-                <span class="tab-icon"><?php echo nttbs_svg_icon('wallet', 16, 16); ?></span>
-                <span class="tab-label"><?php esc_html_e('Payment Gateways & POS', 'nahian-tour-travel-booking-solution'); ?></span>
+                <span class="nttbs-tab-icon"><?php echo nttbs_svg_icon('wallet', 16, 16); ?></span>
+                <span class="nttbs-tab-label"><?php esc_html_e('Payment Gateways & POS', 'nahian-tour-travel-booking-solution'); ?></span>
             </a>
             <a href="<?php echo esc_url(admin_url('admin.php?page=nttbs-core&view=settings&subtab=vouchers')); ?>" 
                class="nttbs-subnav-tab <?php echo $current_subtab === 'vouchers' ? 'active' : ''; ?>">
-                <span class="tab-icon"><?php echo nttbs_svg_icon('price_cat', 16, 16); ?></span>
-                <span class="tab-label"><?php esc_html_e('Promotion Vouchers', 'nahian-tour-travel-booking-solution'); ?></span>
-                <span class="tab-chip"><?php echo count($coupons); ?></span>
+                <span class="nttbs-tab-icon"><?php echo nttbs_svg_icon('price_cat', 16, 16); ?></span>
+                <span class="nttbs-tab-label"><?php esc_html_e('Promotion Vouchers', 'nahian-tour-travel-booking-solution'); ?></span>
+                <span class="nttbs-tab-chip"><?php echo count($coupons); ?></span>
             </a>
             <a href="<?php echo esc_url(admin_url('admin.php?page=nttbs-core&view=settings&subtab=diagnostics')); ?>" 
                class="nttbs-subnav-tab <?php echo $current_subtab === 'diagnostics' ? 'active' : ''; ?>">
-                <span class="tab-icon"><?php echo nttbs_svg_icon('dashboard', 16, 16); ?></span>
-                <span class="tab-label"><?php esc_html_e('Diagnostics & Integrity', 'nahian-tour-travel-booking-solution'); ?></span>
+                <span class="nttbs-tab-icon"><?php echo nttbs_svg_icon('dashboard', 16, 16); ?></span>
+                <span class="nttbs-tab-label"><?php esc_html_e('Diagnostics & Integrity', 'nahian-tour-travel-booking-solution'); ?></span>
             </a>
         </div>
 
@@ -785,7 +802,7 @@ if ($wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $table_coupons)) === $t
                                     </div>
                                     <div class="nttbs-row">
                                         <label class="nttbs-form-label"><?php esc_html_e('Currency ISO 4217 Code *', 'nahian-tour-travel-booking-solution'); ?></label>
-                                        <input type="text" name="currency_code" value="<?php echo esc_attr($currency_code); ?>" required class="nttbs-pro-input" placeholder="EUR, USD, EGP">
+                                        <input type="text" name="currency_code" value="<?php echo esc_attr($currency_code); ?>" required class="nttbs-pro-input font-mono uppercase" placeholder="EUR, USD, EGP">
                                         <span class="nttbs-input-hint"><?php esc_html_e('3-letter ISO representation for payment webhooks.', 'nahian-tour-travel-booking-solution'); ?></span>
                                     </div>
                                 </div>
@@ -793,16 +810,16 @@ if ($wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $table_coupons)) === $t
                                     <div class="nttbs-row">
                                         <label class="nttbs-form-label"><?php esc_html_e('Conservation / Regional Port Levy (%)', 'nahian-tour-travel-booking-solution'); ?></label>
                                         <div class="nttbs-input-affix">
-                                            <input type="number" step="0.01" min="0" max="100" name="tax_percentage" value="<?php echo esc_attr($tax); ?>" class="nttbs-pro-input">
-                                            <span class="affix-tag">%</span>
+                                            <input type="number" step="0.01" min="0" max="100" name="tax_percentage" value="<?php echo esc_attr($tax); ?>" class="nttbs-pro-input font-mono">
+                                            <span class="nttbs-affix-tag">%</span>
                                         </div>
                                         <span class="nttbs-input-hint"><?php esc_html_e('Appended to booking ledger subtotals automatically.', 'nahian-tour-travel-booking-solution'); ?></span>
                                     </div>
                                     <div class="nttbs-row">
                                         <label class="nttbs-form-label"><?php esc_html_e('Mandatory Checkout Deposit (%)', 'nahian-tour-travel-booking-solution'); ?></label>
                                         <div class="nttbs-input-affix">
-                                            <input type="number" min="1" max="100" name="default_deposit_rate" value="<?php echo esc_attr($deposit_rate); ?>" class="nttbs-pro-input">
-                                            <span class="affix-tag">%</span>
+                                            <input type="number" min="1" max="100" name="default_deposit_rate" value="<?php echo esc_attr($deposit_rate); ?>" class="nttbs-pro-input font-mono">
+                                            <span class="nttbs-affix-tag">%</span>
                                         </div>
                                         <span class="nttbs-input-hint"><?php esc_html_e('Minimum partial upfront balance requirement.', 'nahian-tour-travel-booking-solution'); ?></span>
                                     </div>
@@ -819,11 +836,11 @@ if ($wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $table_coupons)) === $t
 
                 <div class="nttbs-stage-secondary">
                     <div class="nttbs-guideline-card">
-                        <div class="guide-header">
-                            <span class="g-icon"><?php echo nttbs_svg_icon('check', 18, 18); ?></span>
+                        <div class="nttbs-guide-header">
+                            <span class="nttbs-g-icon"><?php echo nttbs_svg_icon('check', 18, 18); ?></span>
                             <h4><?php esc_html_e('Fiscal Protocol Guidance', 'nahian-tour-travel-booking-solution'); ?></h4>
                         </div>
-                        <ul class="guide-list">
+                        <ul class="nttbs-guide-list">
                             <li><strong><?php esc_html_e('Real-Time Propagation:', 'nahian-tour-travel-booking-solution'); ?></strong> <?php esc_html_e('Modifications made to fiscal symbols update active POS registers without cache flushing.', 'nahian-tour-travel-booking-solution'); ?></li>
                             <li><strong><?php esc_html_e('Deposit Locking:', 'nahian-tour-travel-booking-solution'); ?></strong> <?php esc_html_e('Setting deposits below 100% enables partial payments across checkout drawers.', 'nahian-tour-travel-booking-solution'); ?></li>
                             <li><strong><?php esc_html_e('Audit Trail Logging:', 'nahian-tour-travel-booking-solution'); ?></strong> <?php esc_html_e('Every save sequence records the operational user account, timestamp, and client IP address.', 'nahian-tour-travel-booking-solution'); ?></li>
@@ -850,33 +867,33 @@ if ($wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $table_coupons)) === $t
                             <div class="nttbs-pro-card-body">
                                 <div class="nttbs-switch-group">
                                     <div class="nttbs-switch-item">
-                                        <div class="switch-meta">
-                                            <span class="switch-title"><?php esc_html_e('Counter Cash Settlements', 'nahian-tour-travel-booking-solution'); ?></span>
-                                            <span class="switch-desc"><?php esc_html_e('Permits frontline operators to register paper tender at dockside booths.', 'nahian-tour-travel-booking-solution'); ?></span>
+                                        <div class="nttbs-switch-meta">
+                                            <span class="nttbs-switch-title"><?php esc_html_e('Counter Cash Settlements', 'nahian-tour-travel-booking-solution'); ?></span>
+                                            <span class="nttbs-switch-desc"><?php esc_html_e('Permits frontline operators to register paper tender at dockside booths.', 'nahian-tour-travel-booking-solution'); ?></span>
                                         </div>
                                         <label class="nttbs-toggle">
                                             <input type="checkbox" name="enable_counter_cash" value="1" <?php checked($enable_cash, 1); ?>>
-                                            <span class="toggle-slider"></span>
+                                            <span class="nttbs-toggle-slider"></span>
                                         </label>
                                     </div>
                                     <div class="nttbs-switch-item">
-                                        <div class="switch-meta">
-                                            <span class="switch-title"><?php esc_html_e('Terminal Hardware POS Reader', 'nahian-tour-travel-booking-solution'); ?></span>
-                                            <span class="switch-desc"><?php esc_html_e('Accepts on-premise chip, swipe, and NFC contactless card terminals.', 'nahian-tour-travel-booking-solution'); ?></span>
+                                        <div class="nttbs-switch-meta">
+                                            <span class="nttbs-switch-title"><?php esc_html_e('Terminal Hardware POS Reader', 'nahian-tour-travel-booking-solution'); ?></span>
+                                            <span class="nttbs-switch-desc"><?php esc_html_e('Accepts on-premise chip, swipe, and NFC contactless card terminals.', 'nahian-tour-travel-booking-solution'); ?></span>
                                         </div>
                                         <label class="nttbs-toggle">
                                             <input type="checkbox" name="enable_terminal_pos" value="1" <?php checked($enable_pos, 1); ?>>
-                                            <span class="toggle-slider"></span>
+                                            <span class="nttbs-toggle-slider"></span>
                                         </label>
                                     </div>
                                     <div class="nttbs-switch-item">
-                                        <div class="switch-meta">
-                                            <span class="switch-title"><?php esc_html_e('Corporate Bank Wire Transfer', 'nahian-tour-travel-booking-solution'); ?></span>
-                                            <span class="switch-desc"><?php esc_html_e('Displays IBAN, BIC/SWIFT wire coordinates for group charter invoices.', 'nahian-tour-travel-booking-solution'); ?></span>
+                                        <div class="nttbs-switch-meta">
+                                            <span class="nttbs-switch-title"><?php esc_html_e('Corporate Bank Wire Transfer', 'nahian-tour-travel-booking-solution'); ?></span>
+                                            <span class="nttbs-switch-desc"><?php esc_html_e('Displays IBAN, BIC/SWIFT wire coordinates for group charter invoices.', 'nahian-tour-travel-booking-solution'); ?></span>
                                         </div>
                                         <label class="nttbs-toggle">
                                             <input type="checkbox" name="enable_bank_wire" value="1" <?php checked($enable_wire, 1); ?>>
-                                            <span class="toggle-slider"></span>
+                                            <span class="nttbs-toggle-slider"></span>
                                         </label>
                                     </div>
                                 </div>
@@ -924,11 +941,11 @@ if ($wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $table_coupons)) === $t
 
                 <div class="nttbs-stage-secondary">
                     <div class="nttbs-guideline-card accent-emerald">
-                        <div class="guide-header">
-                            <span class="g-icon"><?php echo nttbs_svg_icon('wallet', 18, 18); ?></span>
+                        <div class="nttbs-guide-header">
+                            <span class="nttbs-g-icon"><?php echo nttbs_svg_icon('wallet', 18, 18); ?></span>
                             <h4><?php esc_html_e('POS Integration Note', 'nahian-tour-travel-booking-solution'); ?></h4>
                         </div>
-                        <p class="guide-para">
+                        <p class="nttbs-guide-para">
                             <?php esc_html_e('Enabling POS terminals activates the immediate terminal charge protocol within the Slide-over manifest booking drawer.', 'nahian-tour-travel-booking-solution'); ?>
                         </p>
                     </div>
@@ -964,12 +981,12 @@ if ($wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $table_coupons)) === $t
                                     </div>
                                     <div class="nttbs-row">
                                         <label class="nttbs-form-label"><?php esc_html_e('Magnitude', 'nahian-tour-travel-booking-solution'); ?></label>
-                                        <input type="number" step="0.01" min="0.01" name="coupon_amount" value="10.00" required class="nttbs-pro-input">
+                                        <input type="number" step="0.01" min="0.01" name="coupon_amount" value="10.00" required class="nttbs-pro-input font-mono">
                                     </div>
                                 </div>
                                 <div class="nttbs-row">
                                     <label class="nttbs-form-label"><?php esc_html_e('Redemption Threshold Quota', 'nahian-tour-travel-booking-solution'); ?></label>
-                                    <input type="number" min="1" name="usage_limit" value="100" class="nttbs-pro-input">
+                                    <input type="number" min="1" name="usage_limit" value="100" class="nttbs-pro-input font-mono">
                                 </div>
                                 <button type="submit" name="nttbs_dispatch_coupon_save" class="nttbs-btn-action full-width" style="margin-top:12px;">
                                     <?php esc_html_e('Emit Authorization Token', 'nahian-tour-travel-booking-solution'); ?>
@@ -1001,7 +1018,7 @@ if ($wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $table_coupons)) === $t
                                 <tbody>
                                     <?php if (empty($coupons)): ?>
                                         <tr>
-                                            <td colspan="5" class="empty-cell">
+                                            <td colspan="5" class="nttbs-empty-cell">
                                                 <?php esc_html_e('No promotional allocations currently deployed in database.', 'nahian-tour-travel-booking-solution'); ?>
                                             </td>
                                         </tr>
@@ -1010,26 +1027,26 @@ if ($wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $table_coupons)) === $t
                                     ?>
                                         <tr>
                                             <td>
-                                                <code class="voucher-token-box"><?php echo esc_html($cp['code']); ?></code>
+                                                <code class="nttbs-voucher-token-box"><?php echo esc_html($cp['code']); ?></code>
                                             </td>
                                             <td>
-                                                <span class="weight-tag">
+                                                <span class="nttbs-weight-tag">
                                                     <?php echo $cp['discount_type'] === 'percentage' 
                                                         ? esc_html($cp['amount']) . '%' 
-                                                        : esc_html($currency . ' ' . number_format((float)$cp['amount'], 2)); ?>
+                                                        : esc_html($currency . ' ' . number_format_i18n((float)$cp['amount'], 2)); ?>
                                                 </span>
                                             </td>
                                             <td>
-                                                <div class="quota-progress-cluster">
-                                                    <div class="quota-bar"><div class="quota-fill" style="width:<?php echo esc_attr($burn_ratio); ?>%;"></div></div>
-                                                    <span class="quota-text"><?php echo esc_html($cp['used_count']); ?> / <?php echo esc_html($cp['usage_limit']); ?></span>
+                                                <div class="nttbs-quota-progress-cluster">
+                                                    <div class="nttbs-quota-bar"><div class="nttbs-quota-fill" style="width:<?php echo esc_attr($burn_ratio); ?>%;"></div></div>
+                                                    <span class="nttbs-quota-text"><?php echo esc_html($cp['used_count']); ?> / <?php echo esc_html($cp['usage_limit']); ?></span>
                                                 </div>
                                             </td>
                                             <td><span class="nttbs-pill confirmed"><?php echo esc_html(strtoupper($cp['status'])); ?></span></td>
                                             <td style="text-align:right;">
                                                 <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=nttbs-core&view=settings&subtab=vouchers&action=delete_coupon&coupon_id=' . $cp['id']), 'nttbs_delete_coupon_' . $cp['id'])); ?>" 
                                                    onclick="return confirm('<?php echo esc_js(__('Decommission this promotional voucher code?', 'nahian-tour-travel-booking-solution')); ?>');" 
-                                                   class="btn-revoke-inline"><?php esc_html_e('Revoke', 'nahian-tour-travel-booking-solution'); ?></a>
+                                                   class="nttbs-btn-revoke-inline"><?php esc_html_e('Revoke', 'nahian-tour-travel-booking-solution'); ?></a>
                                             </td>
                                         </tr>
                                     <?php endforeach; endif; ?>
@@ -1053,28 +1070,28 @@ if ($wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $table_coupons)) === $t
                     <table class="nttbs-corporate-table diagnostics">
                         <tbody>
                             <tr>
-                                <td class="metric-label"><?php esc_html_e('Execution Engine Version', 'nahian-tour-travel-booking-solution'); ?></td>
-                                <td class="metric-value"><code class="sys-code">v<?php echo esc_html(defined('NTTBS_VERSION') ? NTTBS_VERSION : '1.0.0'); ?></code></td>
+                                <td class="nttbs-metric-label"><?php esc_html_e('Execution Engine Version', 'nahian-tour-travel-booking-solution'); ?></td>
+                                <td class="nttbs-metric-value"><code class="nttbs-sys-code">v<?php echo esc_html(defined('NTTBS_VERSION') ? NTTBS_VERSION : '1.0.0'); ?></code></td>
                             </tr>
                             <tr>
-                                <td class="metric-label"><?php esc_html_e('Relational Storage Engine', 'nahian-tour-travel-booking-solution'); ?></td>
-                                <td class="metric-value">
+                                <td class="nttbs-metric-label"><?php esc_html_e('Relational Storage Engine', 'nahian-tour-travel-booking-solution'); ?></td>
+                                <td class="nttbs-metric-value">
                                     <span class="nttbs-pill confirmed">
                                         <?php printf(esc_html__('Operational (MySQL %s)', 'nahian-tour-travel-booking-solution'), esc_html($wpdb->db_version())); ?>
                                     </span>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="metric-label"><?php esc_html_e('PHP Environment Profile', 'nahian-tour-travel-booking-solution'); ?></td>
-                                <td class="metric-value">
-                                    <code class="sys-code">PHP <?php echo esc_html(PHP_VERSION); ?></code>
-                                    <span class="metric-sub"><?php printf(esc_html__('(Memory Ceiling: %s)', 'nahian-tour-travel-booking-solution'), esc_html(ini_get('memory_limit'))); ?></span>
+                                <td class="nttbs-metric-label"><?php esc_html_e('PHP Environment Profile', 'nahian-tour-travel-booking-solution'); ?></td>
+                                <td class="nttbs-metric-value">
+                                    <code class="nttbs-sys-code">PHP <?php echo esc_html(PHP_VERSION); ?></code>
+                                    <span class="nttbs-metric-sub"><?php printf(esc_html__('(Memory Ceiling: %s)', 'nahian-tour-travel-booking-solution'), esc_html(ini_get('memory_limit'))); ?></span>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="metric-label"><?php esc_html_e('Registered Database Schemas', 'nahian-tour-travel-booking-solution'); ?></td>
-                                <td class="metric-value">
-                                    <div class="schema-chip-cluster">
+                                <td class="nttbs-metric-label"><?php esc_html_e('Registered Database Schemas', 'nahian-tour-travel-booking-solution'); ?></td>
+                                <td class="nttbs-metric-value">
+                                    <div class="nttbs-schema-chip-cluster">
                                         <?php 
                                         $schemas = [
                                             $wpdb->prefix . 'nttbs_trips',
@@ -1088,7 +1105,7 @@ if ($wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $table_coupons)) === $t
                                             $wpdb->prefix . 'nttbs_audit_logs'
                                         ];
                                         foreach ($schemas as $s): ?>
-                                            <span class="schema-chip"><?php echo esc_html($s); ?></span>
+                                            <span class="nttbs-schema-chip"><?php echo esc_html($s); ?></span>
                                         <?php endforeach; ?>
                                     </div>
                                 </td>

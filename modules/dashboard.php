@@ -60,7 +60,7 @@ function nttbs_handle_dashboard_dispatchers() {
         exit;
     }
 
-    // Begin atomic transaction
+    // Begin atomic database transaction
     $wpdb->query('START TRANSACTION');
 
     try {
@@ -221,223 +221,223 @@ $status_code = isset($_GET['code']) ? sanitize_text_field(wp_unslash($_GET['code
      3. STYLESHEET EXTENSIONS (ENTERPRISE POLISH)
      ======================================================================== -->
 <style>
-    .nte-pro-shell {
+    .nttbs-pro-shell {
         display: flex;
         flex-direction: column;
         gap: 24px;
-        animation: nteFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        animation: nttbsFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    @keyframes nteFadeIn {
+    @keyframes nttbsFadeIn {
         from { opacity: 0; transform: translateY(6px); }
         to { opacity: 1; transform: translateY(0); }
     }
 
     /* Alerts */
-    .nte-notice-banner {
+    .nttbs-notice-banner {
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding: 14px 20px;
         border-radius: 10px;
-        font-size: 13px;
+        font-size: 13.5px;
         font-weight: 600;
-        box-shadow: var(--shadow-sm);
+        box-shadow: var(--nttbs-shadow-xs);
     }
-    .nte-notice-banner.notice-success {
-        background-color: var(--c-emerald-bg);
-        border: 1px solid var(--c-emerald-border);
-        color: var(--c-emerald);
+    .nttbs-notice-banner.notice-success {
+        background-color: var(--nttbs-emerald-subtle);
+        border: 1px solid var(--nttbs-emerald-border);
+        color: var(--nttbs-emerald);
     }
-    .nte-notice-banner.notice-danger {
-        background-color: var(--c-rose-bg);
-        border: 1px solid var(--c-rose-border);
-        color: var(--c-rose);
+    .nttbs-notice-banner.notice-danger {
+        background-color: var(--nttbs-rose-subtle);
+        border: 1px solid var(--nttbs-rose-border);
+        color: var(--nttbs-rose);
     }
 
-    /* Enterprise Headers & Panels */
-    .nte-white-panel {
-        background: var(--bg-surface);
-        border: 1px solid var(--border-light);
-        border-radius: 12px;
-        box-shadow: var(--shadow-sm);
+    /* White Panels */
+    .nttbs-white-panel {
+        background: var(--nttbs-bg-card);
+        border: 1px solid var(--nttbs-border);
+        border-radius: 14px;
+        box-shadow: var(--nttbs-shadow-sm);
         overflow: hidden;
         display: flex;
         flex-direction: column;
         transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
-    .nte-white-panel:hover {
-        box-shadow: var(--shadow-md);
+    .nttbs-white-panel:hover {
+        box-shadow: var(--nttbs-shadow-md);
     }
-    .nte-panel-header {
-        padding: 16px 22px;
-        border-bottom: 1px solid var(--border-light);
+    .nttbs-panel-header {
+        padding: 18px 24px;
+        border-bottom: 1px solid var(--nttbs-border);
         display: flex;
         align-items: center;
         justify-content: space-between;
-        background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(0,0,0,0.015) 100%);
+        background: linear-gradient(180deg, #ffffff 0%, var(--nttbs-bg-body) 100%);
     }
-    .nte-panel-header h2, .nte-panel-header h3 {
-        font-size: 14px;
+    .nttbs-panel-header h2, .nttbs-panel-header h3 {
+        font-size: 14.5px;
         font-weight: 800;
         letter-spacing: -0.2px;
-        color: var(--text-main);
+        color: var(--nttbs-text-heading);
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 10px;
         margin: 0;
     }
-    .nte-panel-actions a {
-        font-size: 12px;
+    .nttbs-panel-actions a {
+        font-size: 12.5px;
         font-weight: 700;
-        color: var(--c-blue);
+        color: var(--nttbs-primary);
         text-decoration: none;
         transition: color 0.15s ease;
     }
-    .nte-panel-actions a:hover {
-        color: #1d4ed8;
+    .nttbs-panel-actions a:hover {
+        color: var(--nttbs-primary-dark);
     }
 
-    /* Enterprise Table Styling */
-    .nte-table-responsive {
+    /* Data Tables */
+    .nttbs-table-responsive {
         width: 100%;
         overflow-x: auto;
     }
-    .nte-data-table {
+    .nttbs-data-table {
         width: 100%;
         border-collapse: separate;
         border-spacing: 0;
         font-size: 13px;
         text-align: left;
     }
-    .nte-data-table th {
-        background-color: var(--bg-subtle);
-        color: var(--text-muted);
+    .nttbs-data-table th {
+        background-color: var(--nttbs-bg-body);
+        color: var(--nttbs-text-muted);
         font-size: 11px;
         font-weight: 800;
         text-transform: uppercase;
         letter-spacing: 0.6px;
-        padding: 11px 18px;
-        border-bottom: 1px solid var(--border-light);
+        padding: 12px 20px;
+        border-bottom: 1px solid var(--nttbs-border);
         white-space: nowrap;
     }
-    .nte-data-table td {
-        padding: 14px 18px;
-        border-bottom: 1px solid var(--border-light);
-        color: var(--text-main);
+    .nttbs-data-table td {
+        padding: 14px 20px;
+        border-bottom: 1px solid var(--nttbs-border);
+        color: var(--nttbs-text-body);
         vertical-align: middle;
         background-color: transparent;
         transition: background-color 0.12s ease;
     }
-    .nte-data-table tr:last-child td {
+    .nttbs-data-table tr:last-child td {
         border-bottom: none;
     }
-    .nte-data-table tr:hover td {
-        background-color: var(--bg-subtle);
+    .nttbs-data-table tr:hover td {
+        background-color: var(--nttbs-bg-hover);
     }
 
-    /* Action Buttons */
-    .nte-btn-emerald {
-        background-color: var(--c-emerald);
+    /* Actions */
+    .nttbs-btn-emerald {
+        background: linear-gradient(135deg, var(--nttbs-emerald), #059669);
         color: #ffffff;
         border: none;
-        padding: 6px 13px;
-        border-radius: 6px;
+        padding: 7px 14px;
+        border-radius: 8px;
         font-size: 12px;
         font-weight: 700;
         cursor: pointer;
         display: inline-flex;
         align-items: center;
         gap: 6px;
-        transition: background-color 0.15s ease, transform 0.1s ease;
-        box-shadow: 0 1px 2px rgba(5, 150, 105, 0.2);
+        transition: all 0.15s ease;
+        box-shadow: 0 1px 3px rgba(16, 185, 129, 0.3);
     }
-    .nte-btn-emerald:hover {
-        background-color: #047857;
+    .nttbs-btn-emerald:hover {
         transform: translateY(-1px);
+        box-shadow: 0 3px 8px rgba(16, 185, 129, 0.4);
     }
-    .nte-btn-emerald:active {
+    .nttbs-btn-emerald:active {
         transform: translateY(0);
     }
 
-    /* Visual Data Gauges */
-    .nte-meter-bar {
-        background-color: var(--bg-subtle);
-        border: 1px solid var(--border-light);
+    /* Gauge Meters */
+    .nttbs-meter-bar {
+        background-color: var(--nttbs-border-subtle);
+        border: 1px solid var(--nttbs-border);
         border-radius: 999px;
         height: 6px;
-        width: 86px;
+        width: 90px;
         overflow: hidden;
         margin-bottom: 5px;
     }
-    .nte-meter-fill {
+    .nttbs-meter-fill {
         height: 100%;
         border-radius: 999px;
         transition: width 0.3s ease;
     }
-    .nte-meter-blue { background-color: var(--c-blue); }
-    .nte-meter-amber { background-color: var(--c-amber); }
-    .nte-meter-rose { background-color: var(--c-rose); }
+    .nttbs-meter-blue    { background-color: var(--nttbs-primary); }
+    .nttbs-meter-amber   { background-color: var(--nttbs-amber); }
+    .nttbs-meter-rose    { background-color: var(--nttbs-rose); }
 
-    /* Clean Status Badges */
-    .nte-status-pill {
+    /* Badges */
+    .nttbs-status-pill {
         display: inline-flex;
         align-items: center;
         gap: 6px;
-        padding: 3px 8px;
+        padding: 3px 9px;
         border-radius: 999px;
         font-size: 11px;
         font-weight: 700;
-        letter-spacing: 0.2px;
+        letter-spacing: 0.3px;
         text-transform: uppercase;
     }
-    .nte-status-pill::before {
+    .nttbs-status-pill::before {
         content: '';
         width: 6px;
         height: 6px;
         border-radius: 50%;
     }
-    .nte-status-confirmed {
-        background-color: var(--c-emerald-bg);
-        border: 1px solid var(--c-emerald-border);
-        color: var(--c-emerald);
+    .nttbs-status-confirmed {
+        background-color: var(--nttbs-emerald-subtle);
+        border: 1px solid var(--nttbs-emerald-border);
+        color: var(--nttbs-emerald);
     }
-    .nte-status-confirmed::before {
-        background-color: var(--c-emerald);
+    .nttbs-status-confirmed::before {
+        background-color: var(--nttbs-emerald);
     }
-    .nte-status-cancelled {
-        background-color: var(--c-rose-bg);
-        border: 1px solid var(--c-rose-border);
-        color: var(--c-rose);
+    .nttbs-status-cancelled {
+        background-color: var(--nttbs-rose-subtle);
+        border: 1px solid var(--nttbs-rose-border);
+        color: var(--nttbs-rose);
     }
-    .nte-status-cancelled::before {
-        background-color: var(--c-rose);
+    .nttbs-status-cancelled::before {
+        background-color: var(--nttbs-rose);
     }
 
-    /* Catalog Cards (Right Rail) */
-    .nte-catalog-item {
+    /* Right Rail Catalog Items */
+    .nttbs-catalog-item {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 14px 18px;
-        border-bottom: 1px solid var(--border-light);
+        padding: 16px 22px;
+        border-bottom: 1px solid var(--nttbs-border);
         transition: background-color 0.15s ease;
     }
-    .nte-catalog-item:last-child {
+    .nttbs-catalog-item:last-child {
         border-bottom: none;
     }
-    .nte-catalog-item:hover {
-        background-color: var(--bg-subtle);
+    .nttbs-catalog-item:hover {
+        background-color: var(--nttbs-bg-hover);
     }
 
-    /* Layout Responsive Grid */
-    .nte-dash-grid {
+    /* Responsive Grid */
+    .nttbs-dash-grid {
         display: grid;
         grid-template-columns: minmax(0, 2.3fr) minmax(0, 1fr);
         gap: 24px;
         align-items: start;
     }
     @media (max-width: 1200px) {
-        .nte-dash-grid {
+        .nttbs-dash-grid {
             grid-template-columns: 1fr;
         }
     }
@@ -446,20 +446,20 @@ $status_code = isset($_GET['code']) ? sanitize_text_field(wp_unslash($_GET['code
 <!-- ========================================================================
      4. MAIN DASHBOARD TEMPLATE VIEW
      ======================================================================== -->
-<div class="nte-pro-shell">
+<div class="nttbs-pro-shell">
 
     <?php if ($status_flag === 'booked'): ?>
-        <div class="nte-notice-banner notice-success">
-            <div style="display:flex; align-items:center; gap:8px;">
-                <span class="nte-nav-icon"><?php echo nttbs_svg_icon('check', 18, 18); ?></span>
+        <div class="nttbs-notice-banner notice-success">
+            <div style="display:flex; align-items:center; gap:10px;">
+                <span class="nttbs-nav-icon"><?php echo nttbs_svg_icon('check', 18, 18); ?></span>
                 <span><?php printf(esc_html__('Passenger manifest confirmed successfully. Issued Booking Code: %s', 'nahian-tour-travel-booking-solution'), '<strong>' . esc_html($status_code) . '</strong>'); ?></span>
             </div>
-            <button type="button" onclick="this.parentElement.remove()" style="background:none; border:none; cursor:pointer; color:inherit; font-size:16px;">×</button>
+            <button type="button" onclick="this.parentElement.remove()" style="background:none; border:none; cursor:pointer; color:inherit; font-size:18px; font-weight:700;">×</button>
         </div>
     <?php elseif (strpos($status_flag, 'error_') === 0): ?>
-        <div class="nte-notice-banner notice-danger">
-            <div style="display:flex; align-items:center; gap:8px;">
-                <span class="nte-nav-icon"><?php echo nttbs_svg_icon('close', 18, 18); ?></span>
+        <div class="nttbs-notice-banner notice-danger">
+            <div style="display:flex; align-items:center; gap:10px;">
+                <span class="nttbs-nav-icon"><?php echo nttbs_svg_icon('close', 18, 18); ?></span>
                 <span>
                     <?php 
                     if ($status_flag === 'error_overcapacity') {
@@ -470,102 +470,30 @@ $status_code = isset($_GET['code']) ? sanitize_text_field(wp_unslash($_GET['code
                     ?>
                 </span>
             </div>
-            <button type="button" onclick="this.parentElement.remove()" style="background:none; border:none; cursor:pointer; color:inherit; font-size:16px;">×</button>
+            <button type="button" onclick="this.parentElement.remove()" style="background:none; border:none; cursor:pointer; color:inherit; font-size:18px; font-weight:700;">×</button>
         </div>
     <?php endif; ?>
 
-    <!-- Operational Telemetry Hero Banner -->
-    <header class="nte-hero-telemetry">
-        <div>
-            <div style="font-size:11px; font-weight:800; color:var(--c-blue); letter-spacing:1px; margin-bottom:4px; text-transform:uppercase;">
-                <?php esc_html_e('Global Fleet Telemetry & Manifest Ops', 'nahian-tour-travel-booking-solution'); ?>
-            </div>
-            <h1 style="font-size:24px; font-weight:900; color:var(--text-main); letter-spacing:-0.4px;">
-                <?php esc_html_e('Tour Operations Center', 'nahian-tour-travel-booking-solution'); ?>
-            </h1>
-            <div style="font-size:13px; color:var(--text-muted); margin-top:5px; display:flex; align-items:center; flex-wrap:wrap; gap:12px;">
-                <span><?php esc_html_e('Active Tour Lines:', 'nahian-tour-travel-booking-solution'); ?> <strong style="color:var(--text-main); font-weight:700;"><?php echo esc_html($active_trips_count); ?></strong></span>
-                <span style="opacity:0.3;">|</span>
-                <span><?php esc_html_e('Manifest Volume:', 'nahian-tour-travel-booking-solution'); ?> <strong style="color:var(--c-emerald); font-weight:800;"><?php echo esc_html($telemetry['tickets'] ?? 0); ?> <?php esc_html_e('Pax', 'nahian-tour-travel-booking-solution'); ?></strong></span>
-                <span style="opacity:0.3;">|</span>
-                <span style="display:inline-flex; align-items:center; gap:5px;">
-                    <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background-color:var(--c-emerald);"></span>
-                    <strong style="color:var(--c-emerald); font-weight:700;"><?php esc_html_e('Core Engine Operational', 'nahian-tour-travel-booking-solution'); ?></strong>
-                </span>
-            </div>
-        </div>
-        <div class="nte-hero-clock-box">
-            <div style="font-size:11px; color:var(--c-blue); font-weight:700; text-transform:uppercase; letter-spacing:0.4px;">
-                <?php echo esc_html(current_time('l, jS F Y')); ?>
-            </div>
-            <div class="nte-hero-clock" id="nte-live-clock">--:--:--</div>
-        </div>
-    </header>
-
-    <!-- Top KPI Metrical Matrix -->
-    <section class="nte-kpi-deck">
-        <div class="nte-kpi-card kpi-blue">
-            <div>
-                <div class="nte-kpi-title"><?php esc_html_e('Realized Revenue', 'nahian-tour-travel-booking-solution'); ?></div>
-                <div class="nte-kpi-value" style="color:var(--c-blue);">
-                    <?php echo esc_html($currency . ' ' . number_format_i18n((float)($telemetry['revenue'] ?? 0), 2)); ?>
-                </div>
-            </div>
-            <div class="nte-kpi-icon-box"><?php echo nttbs_svg_icon('wallet', 22, 22); ?></div>
-        </div>
-
-        <div class="nte-kpi-card kpi-rose">
-            <div>
-                <div class="nte-kpi-title"><?php esc_html_e('Receivables Outstanding', 'nahian-tour-travel-booking-solution'); ?></div>
-                <div class="nte-kpi-value" style="color:var(--c-rose);">
-                    <?php echo esc_html($currency . ' ' . number_format_i18n((float)($telemetry['receivable'] ?? 0), 2)); ?>
-                </div>
-            </div>
-            <div class="nte-kpi-icon-box"><?php echo nttbs_svg_icon('clock', 22, 22); ?></div>
-        </div>
-
-        <div class="nte-kpi-card kpi-emerald">
-            <div>
-                <div class="nte-kpi-title"><?php esc_html_e('Manifest Volume', 'nahian-tour-travel-booking-solution'); ?></div>
-                <div class="nte-kpi-value" style="color:var(--c-emerald);">
-                    <?php echo esc_html(number_format_i18n((int)($telemetry['tickets'] ?? 0))); ?> 
-                    <small style="font-size:12px; color:var(--text-muted); font-weight:600;"><?php esc_html_e('Pax', 'nahian-tour-travel-booking-solution'); ?></small>
-                </div>
-            </div>
-            <div class="nte-kpi-icon-box"><?php echo nttbs_svg_icon('bookings', 22, 22); ?></div>
-        </div>
-
-        <div class="nte-kpi-card kpi-amber">
-            <div>
-                <div class="nte-kpi-title"><?php esc_html_e('Executed Bookings', 'nahian-tour-travel-booking-solution'); ?></div>
-                <div class="nte-kpi-value" style="color:var(--c-amber);">
-                    <?php echo esc_html(number_format_i18n((int)($telemetry['orders'] ?? 0))); ?>
-                </div>
-            </div>
-            <div class="nte-kpi-icon-box"><?php echo nttbs_svg_icon('clipboard', 22, 22); ?></div>
-        </div>
-    </section>
-
     <!-- Operational Work Area (Split Grid) -->
-    <div class="nte-dash-grid">
+    <div class="nttbs-dash-grid">
         
         <!-- Left Column: Operations Schedules & Recent Records -->
         <div style="display:flex; flex-direction:column; gap:24px;">
 
             <!-- Upcoming Scheduled Departures -->
-            <div class="nte-white-panel">
-                <div class="nte-panel-header">
+            <div class="nttbs-white-panel">
+                <div class="nttbs-panel-header">
                     <h3>
-                        <span class="nte-nav-icon icon-trips"><?php echo nttbs_svg_icon('compass', 18, 18); ?></span>
+                        <span class="nttbs-nav-icon nttbs-icon-trips"><?php echo nttbs_svg_icon('trips', 18, 18); ?></span>
                         <span><?php esc_html_e('Active Fleet Manifests & Next Departures', 'nahian-tour-travel-booking-solution'); ?></span>
                     </h3>
-                    <div class="nte-panel-actions">
+                    <div class="nttbs-panel-actions">
                         <a href="<?php echo esc_url(admin_url('admin.php?page=nttbs-core&view=trips')); ?>">+ <?php esc_html_e('Configure New Tour', 'nahian-tour-travel-booking-solution'); ?></a>
                     </div>
                 </div>
 
-                <div class="nte-table-responsive">
-                    <table class="nte-data-table">
+                <div class="nttbs-table-responsive">
+                    <table class="nttbs-data-table">
                         <thead>
                             <tr>
                                 <th><?php esc_html_e('Schedule', 'nahian-tour-travel-booking-solution'); ?></th>
@@ -578,7 +506,7 @@ $status_code = isset($_GET['code']) ? sanitize_text_field(wp_unslash($_GET['code
                         <tbody>
                             <?php if (empty($departures)): ?>
                                 <tr>
-                                    <td colspan="5" style="text-align:center; padding:36px; color:var(--text-muted);">
+                                    <td colspan="5" style="text-align:center; padding:36px; color:var(--nttbs-text-muted);">
                                         <?php esc_html_e('No active expedition schedules detected in the fleet dispatch engine.', 'nahian-tour-travel-booking-solution'); ?>
                                     </td>
                                 </tr>
@@ -588,35 +516,38 @@ $status_code = isset($_GET['code']) ? sanitize_text_field(wp_unslash($_GET['code
                                 $remaining = max(0, $total - $booked);
                                 $pct       = $total > 0 ? min(100, round(($booked / $total) * 100)) : 0;
                                 
-                                $gauge_class = 'nte-meter-blue';
+                                $gauge_class = 'nttbs-meter-blue';
                                 if ($pct >= 90) {
-                                    $gauge_class = 'nte-meter-rose';
+                                    $gauge_class = 'nttbs-meter-rose';
                                 } elseif ($pct >= 70) {
-                                    $gauge_class = 'nte-meter-amber';
+                                    $gauge_class = 'nttbs-meter-amber';
                                 }
                             ?>
                                 <tr>
                                     <td>
-                                        <strong style="color:var(--text-main); font-weight:800;"><?php echo esc_html($dep['departure_date']); ?></strong><br>
-                                        <span style="color:var(--text-muted); font-size:11px; font-weight:700;"><?php echo esc_html($dep['departure_time']); ?></span>
+                                        <strong style="color:var(--nttbs-text-heading); font-weight:800;"><?php echo esc_html($dep['departure_date']); ?></strong><br>
+                                        <span style="color:var(--nttbs-text-muted); font-size:11px; font-weight:700; font-family:'JetBrains Mono', monospace;"><?php echo esc_html($dep['departure_time']); ?></span>
                                     </td>
                                     <td>
-                                        <div style="font-weight:800; color:var(--text-main);"><?php echo esc_html($dep['trip_title']); ?></div>
-                                        <div style="color:var(--c-blue); font-size:11px; font-weight:700; margin-top:2px;">
+                                        <div style="font-weight:800; color:var(--nttbs-text-heading);"><?php echo esc_html($dep['trip_title']); ?></div>
+                                        <div style="color:var(--nttbs-primary); font-size:11px; font-weight:700; margin-top:2px;">
                                             <?php echo esc_html($dep['transport_type'] ?? 'Fleet Charter'); ?>
                                         </div>
                                     </td>
                                     <td>
-                                        <div style="font-weight:800; font-size:13px;"><?php echo esc_html($booked . ' / ' . $total); ?> <span style="font-size:11px; color:var(--text-muted); font-weight:600;"><?php esc_html_e('Pax', 'nahian-tour-travel-booking-solution'); ?></span></div>
-                                        <div style="color:<?php echo $remaining === 0 ? 'var(--c-rose)' : 'var(--c-emerald)'; ?>; font-size:11px; font-weight:800;">
+                                        <div style="font-weight:800; font-size:13px; font-family:'JetBrains Mono', monospace;">
+                                            <?php echo esc_html($booked . ' / ' . $total); ?> 
+                                            <span style="font-size:11px; color:var(--nttbs-text-muted); font-family:inherit; font-weight:600;"><?php esc_html_e('Pax', 'nahian-tour-travel-booking-solution'); ?></span>
+                                        </div>
+                                        <div style="color:<?php echo $remaining === 0 ? 'var(--nttbs-rose)' : 'var(--nttbs-emerald)'; ?>; font-size:11.5px; font-weight:800;">
                                             <?php echo $remaining === 0 ? esc_html__('Sold Out', 'nahian-tour-travel-booking-solution') : sprintf(esc_html__('%d Available', 'nahian-tour-travel-booking-solution'), $remaining); ?>
                                         </div>
                                     </td>
                                     <td>
-                                        <div class="nte-meter-bar">
-                                            <div class="nte-meter-fill <?php echo esc_attr($gauge_class); ?>" style="width:<?php echo esc_attr($pct); ?>%;"></div>
+                                        <div class="nttbs-meter-bar">
+                                            <div class="nttbs-meter-fill <?php echo esc_attr($gauge_class); ?>" style="width:<?php echo esc_attr($pct); ?>%;"></div>
                                         </div>
-                                        <span style="font-size:11px; font-weight:800; color:var(--text-muted); font-variant-numeric:tabular-nums;">
+                                        <span style="font-size:11px; font-weight:800; color:var(--nttbs-text-muted); font-family:'JetBrains Mono', monospace;">
                                             <?php echo esc_html($pct); ?>% <?php esc_html_e('Filled', 'nahian-tour-travel-booking-solution'); ?>
                                         </span>
                                     </td>
@@ -625,13 +556,13 @@ $status_code = isset($_GET['code']) ? sanitize_text_field(wp_unslash($_GET['code
                                             <button 
                                                 type="button" 
                                                 onclick="nttbsOpenDrawer(<?php echo (int) $dep['id']; ?>, '<?php echo esc_js($dep['trip_title']); ?>', <?php echo (float) $dep['price_adult']; ?>)" 
-                                                class="nte-btn-emerald"
+                                                class="nttbs-btn-emerald"
                                             >
                                                 <?php echo nttbs_svg_icon('check', 14, 14); ?>
                                                 <?php esc_html_e('Dispatch Pax', 'nahian-tour-travel-booking-solution'); ?>
                                             </button>
                                         <?php else: ?>
-                                            <button type="button" disabled class="nte-btn-emerald" style="opacity:0.4; cursor:not-allowed; background:var(--text-muted);">
+                                            <button type="button" disabled class="nttbs-btn-emerald" style="opacity:0.4; cursor:not-allowed; background:var(--nttbs-text-muted);">
                                                 <?php esc_html_e('Full', 'nahian-tour-travel-booking-solution'); ?>
                                             </button>
                                         <?php endif; ?>
@@ -644,19 +575,19 @@ $status_code = isset($_GET['code']) ? sanitize_text_field(wp_unslash($_GET['code
             </div>
 
             <!-- Recent Passenger Bookings -->
-            <div class="nte-white-panel">
-                <div class="nte-panel-header">
+            <div class="nttbs-white-panel">
+                <div class="nttbs-panel-header">
                     <h3>
-                        <span class="nte-nav-icon icon-bookings"><?php echo nttbs_svg_icon('clipboard', 18, 18); ?></span>
+                        <span class="nttbs-nav-icon nttbs-icon-bookings"><?php echo nttbs_svg_icon('bookings', 18, 18); ?></span>
                         <span><?php esc_html_e('Recent Passenger Manifest Ledger', 'nahian-tour-travel-booking-solution'); ?></span>
                     </h3>
-                    <div class="nte-panel-actions">
+                    <div class="nttbs-panel-actions">
                         <a href="<?php echo esc_url(admin_url('admin.php?page=nttbs-core&view=bookings')); ?>"><?php esc_html_e('View Complete Ledger →', 'nahian-tour-travel-booking-solution'); ?></a>
                     </div>
                 </div>
 
-                <div class="nte-table-responsive">
-                    <table class="nte-data-table">
+                <div class="nttbs-table-responsive">
+                    <table class="nttbs-data-table">
                         <thead>
                             <tr>
                                 <th><?php esc_html_e('Booking ID', 'nahian-tour-travel-booking-solution'); ?></th>
@@ -670,38 +601,38 @@ $status_code = isset($_GET['code']) ? sanitize_text_field(wp_unslash($_GET['code
                         <tbody>
                             <?php if (empty($recent_bookings)): ?>
                                 <tr>
-                                    <td colspan="6" style="text-align:center; padding:36px; color:var(--text-muted);">
+                                    <td colspan="6" style="text-align:center; padding:36px; color:var(--nttbs-text-muted);">
                                         <?php esc_html_e('No booking transactions have been recorded in this sequence.', 'nahian-tour-travel-booking-solution'); ?>
                                     </td>
                                 </tr>
                             <?php else: foreach ($recent_bookings as $rb): ?>
                                 <tr>
                                     <td>
-                                        <code style="font-family:ui-monospace, monospace; font-size:12px; font-weight:800; color:var(--c-blue); background:var(--c-blue-bg); padding:3px 6px; border-radius:4px; border:1px solid var(--c-blue-border);">
+                                        <code style="font-family:'JetBrains Mono', monospace; font-size:12px; font-weight:800; color:var(--nttbs-primary-dark); background:var(--nttbs-primary-subtle); padding:4px 8px; border-radius:6px; border:1px solid var(--nttbs-primary-border);">
                                             <?php echo esc_html($rb['booking_code']); ?>
                                         </code>
                                     </td>
                                     <td>
-                                        <strong style="color:var(--text-main); font-weight:800;"><?php echo esc_html($rb['full_name']); ?></strong><br>
-                                        <span style="color:var(--text-muted); font-size:11px;"><?php echo esc_html($rb['email']); ?></span>
+                                        <strong style="color:var(--nttbs-text-heading); font-weight:800;"><?php echo esc_html($rb['full_name']); ?></strong><br>
+                                        <span style="color:var(--nttbs-text-muted); font-size:11.5px;"><?php echo esc_html($rb['email']); ?></span>
                                     </td>
                                     <td>
-                                        <div style="font-weight:700; color:var(--text-main);"><?php echo esc_html($rb['trip_title']); ?></div>
-                                        <span style="color:var(--text-muted); font-size:11px;"><?php echo esc_html($rb['departure_date'] ?? 'Immediate Departure'); ?></span>
+                                        <div style="font-weight:700; color:var(--nttbs-text-heading);"><?php echo esc_html($rb['trip_title']); ?></div>
+                                        <span style="color:var(--nttbs-text-muted); font-size:11px;"><?php echo esc_html($rb['departure_date'] ?? 'Immediate Departure'); ?></span>
                                     </td>
                                     <td>
-                                        <span style="background-color:var(--c-purple-bg); color:var(--c-purple); border:1px solid var(--c-purple-border); padding:2px 7px; border-radius:6px; font-weight:800; font-size:11px; letter-spacing:0.3px;">
+                                        <span style="background-color:var(--nttbs-purple-subtle); color:var(--nttbs-purple); border:1px solid var(--nttbs-purple-border); padding:3px 8px; border-radius:6px; font-weight:800; font-size:11px; font-family:'JetBrains Mono', monospace;">
                                             <?php echo esc_html($rb['assigned_seats']); ?>
                                         </span>
                                     </td>
                                     <td>
-                                        <strong style="font-weight:800; color:var(--text-main);">
+                                        <strong style="font-weight:800; color:var(--nttbs-text-heading); font-family:'JetBrains Mono', monospace;">
                                             <?php echo esc_html($currency . ' ' . number_format_i18n((float)$rb['paid_amount'], 2)); ?>
                                         </strong>
                                     </td>
                                     <td>
                                         <?php $is_confirmed = ($rb['status'] === 'confirmed'); ?>
-                                        <span class="nte-status-pill <?php echo $is_confirmed ? 'nte-status-confirmed' : 'nte-status-cancelled'; ?>">
+                                        <span class="nttbs-status-pill <?php echo $is_confirmed ? 'nttbs-status-confirmed' : 'nttbs-status-cancelled'; ?>">
                                             <?php echo esc_html(strtoupper($rb['status'])); ?>
                                         </span>
                                     </td>
@@ -718,32 +649,32 @@ $status_code = isset($_GET['code']) ? sanitize_text_field(wp_unslash($_GET['code
         <div style="display:flex; flex-direction:column; gap:24px;">
 
             <!-- Active Tour Catalog -->
-            <div class="nte-white-panel">
-                <div class="nte-panel-header">
+            <div class="nttbs-white-panel">
+                <div class="nttbs-panel-header">
                     <h3>
-                        <span class="nte-nav-icon icon-trip_type"><?php echo nttbs_svg_icon('price_cat', 18, 18); ?></span>
+                        <span class="nttbs-nav-icon nttbs-icon-price_cat"><?php echo nttbs_svg_icon('price_cat', 18, 18); ?></span>
                         <span><?php esc_html_e('Configured Tour Lines', 'nahian-tour-travel-booking-solution'); ?></span>
                     </h3>
                 </div>
                 
                 <div>
                     <?php if (empty($trips)): ?>
-                        <div style="padding:24px; text-align:center; color:var(--text-muted); font-size:13px;">
+                        <div style="padding:28px; text-align:center; color:var(--nttbs-text-muted); font-size:13px;">
                             <?php esc_html_e('No travel packages configured.', 'nahian-tour-travel-booking-solution'); ?>
                         </div>
                     <?php else: foreach (array_slice($trips, 0, 5) as $t): ?>
-                        <div class="nte-catalog-item">
+                        <div class="nttbs-catalog-item">
                             <div>
-                                <div style="font-size:13px; font-weight:800; color:var(--text-main); margin-bottom:2px;">
+                                <div style="font-size:13.5px; font-weight:800; color:var(--nttbs-text-heading); margin-bottom:3px;">
                                     <?php echo esc_html($t['title']); ?>
                                 </div>
-                                <div style="font-size:11px; color:var(--text-muted); font-weight:600;">
+                                <div style="font-size:11.5px; color:var(--nttbs-text-muted); font-weight:600;">
                                     <?php echo esc_html($t['duration_days']); ?>D / <?php echo esc_html($t['duration_nights']); ?>N
-                                    <span style="opacity:0.4;">•</span>
-                                    <span style="color:var(--c-teal); font-weight:700;"><?php echo esc_html($t['destination_name'] ?? 'Harbor Station'); ?></span>
+                                    <span style="opacity:0.4; margin: 0 4px;">•</span>
+                                    <span style="color:var(--nttbs-teal); font-weight:700;"><?php echo esc_html($t['destination_name'] ?? 'Harbor Station'); ?></span>
                                 </div>
                             </div>
-                            <div style="font-size:13px; font-weight:900; color:var(--c-blue); text-align:right;">
+                            <div style="font-size:14px; font-weight:800; color:var(--nttbs-primary-dark); font-family:'JetBrains Mono', monospace; text-align:right;">
                                 <?php echo esc_html($currency . ' ' . number_format_i18n((float)$t['price_adult'], 2)); ?>
                             </div>
                         </div>
@@ -752,12 +683,12 @@ $status_code = isset($_GET['code']) ? sanitize_text_field(wp_unslash($_GET['code
             </div>
 
             <!-- Operations Dispatch Directive Card -->
-            <div style="background-color:var(--c-teal-bg); border:1px solid var(--c-teal-border); border-left:4px solid var(--c-teal); border-radius:12px; padding:20px; box-shadow:var(--shadow-sm);">
-                <div style="font-size:13px; font-weight:800; color:var(--c-teal); margin-bottom:6px; display:flex; align-items:center; gap:8px;">
-                    <span class="nte-nav-icon" style="color:var(--c-teal);"><?php echo nttbs_svg_icon('check', 16, 16); ?></span>
+            <div style="background-color:var(--nttbs-teal-subtle); border:1px solid var(--nttbs-teal-border); border-left:4px solid var(--nttbs-teal); border-radius:14px; padding:22px; box-shadow:var(--nttbs-shadow-xs);">
+                <div style="font-size:13.5px; font-weight:800; color:var(--nttbs-teal); margin-bottom:8px; display:flex; align-items:center; gap:8px;">
+                    <span class="nttbs-nav-icon" style="color:var(--nttbs-teal);"><?php echo nttbs_svg_icon('check', 16, 16); ?></span>
                     <?php esc_html_e('Fleet Concurrency Protocol', 'nahian-tour-travel-booking-solution'); ?>
                 </div>
-                <p style="font-size:12px; color:var(--text-muted); line-height:1.6; margin:0;">
+                <p style="font-size:12px; color:var(--nttbs-text-body); line-height:1.6; margin:0;">
                     <?php esc_html_e('Real-time database locks prevent passenger seat contention during counter checkout. Departure loads automatically reflect immediate checkouts across the global reservation engine.', 'nahian-tour-travel-booking-solution'); ?>
                 </p>
             </div>

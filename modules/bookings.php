@@ -244,234 +244,309 @@ $status_code = isset($_GET['code']) ? sanitize_text_field(wp_unslash($_GET['code
 ?>
 
 <style>
-    .nte-booking-shell {
+    .nttbs-booking-shell {
         display: flex;
         flex-direction: column;
-        gap: 20px;
-        animation: nteFadeIn 0.25s ease-out;
+        gap: 24px;
+        animation: nttbsFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    @keyframes nteFadeIn {
-        from { opacity: 0; transform: translateY(4px); }
+    @keyframes nttbsFadeIn {
+        from { opacity: 0; transform: translateY(6px); }
         to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Subtab Pills */
-    .nte-subnav-bar {
+    /* Subnav Tab Controls */
+    .nttbs-subnav-bar {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        border-bottom: 1px solid var(--border-light);
-        padding-bottom: 16px;
+        border-bottom: 1px solid var(--nttbs-border);
+        padding-bottom: 18px;
+        flex-wrap: wrap;
+        gap: 12px;
     }
-    .nte-pill-toggle {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 8px 16px;
-        border-radius: 8px;
-        font-size: 13px;
-        font-weight: 700;
-        text-decoration: none;
-        transition: all 0.15s ease;
-    }
-    .nte-pill-toggle.active {
-        background-color: var(--c-blue);
-        color: #ffffff;
-        box-shadow: var(--shadow-sm);
-    }
-    .nte-pill-toggle.inactive {
-        background-color: var(--bg-surface);
-        color: var(--text-muted);
-        border: 1px solid var(--border-light);
-    }
-    .nte-pill-toggle.inactive:hover {
-        background-color: var(--bg-subtle);
-        color: var(--text-main);
-    }
-
-    /* Alerts */
-    .nte-alert {
+    .nttbs-subnav-group {
         display: flex;
         align-items: center;
         gap: 10px;
-        padding: 12px 18px;
-        border-radius: 8px;
+    }
+    .nttbs-pill-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 9px 18px;
+        border-radius: 10px;
+        font-size: 13px;
+        font-weight: 700;
+        text-decoration: none;
+        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .nttbs-pill-toggle.active {
+        background: linear-gradient(135deg, var(--nttbs-primary), var(--nttbs-primary-dark));
+        color: #ffffff;
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+    }
+    .nttbs-pill-toggle.inactive {
+        background-color: var(--nttbs-bg-card);
+        color: var(--nttbs-text-muted);
+        border: 1px solid var(--nttbs-border);
+    }
+    .nttbs-pill-toggle.inactive:hover {
+        background-color: var(--nttbs-bg-hover);
+        color: var(--nttbs-text-heading);
+        transform: translateY(-1px);
+    }
+    .nttbs-pill-badge {
+        background: rgba(255, 255, 255, 0.25);
+        color: inherit;
+        font-size: 11px;
+        font-weight: 800;
+        padding: 2px 8px;
+        border-radius: 999px;
+        font-family: 'JetBrains Mono', monospace;
+    }
+    .nttbs-pill-toggle.inactive .nttbs-pill-badge {
+        background: var(--nttbs-bg-hover);
+        color: var(--nttbs-text-heading);
+    }
+
+    /* System Notice Badges */
+    .nttbs-alert {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 18px;
+        border-radius: 10px;
         font-size: 13px;
         font-weight: 600;
     }
-    .nte-alert-success {
-        background-color: var(--c-emerald-bg);
-        border: 1px solid var(--c-emerald-border);
-        color: var(--c-emerald);
+    .nttbs-alert-success {
+        background-color: var(--nttbs-emerald-subtle);
+        border: 1px solid var(--nttbs-emerald-border);
+        color: var(--nttbs-emerald);
     }
-    .nte-alert-danger {
-        background-color: var(--c-rose-bg);
-        border: 1px solid var(--c-rose-border);
-        color: var(--c-rose);
+    .nttbs-alert-danger {
+        background-color: var(--nttbs-rose-subtle);
+        border: 1px solid var(--nttbs-rose-border);
+        color: var(--nttbs-rose);
     }
 
-    /* Panels & Tables */
-    .nte-white-panel {
-        background: var(--bg-surface);
-        border: 1px solid var(--border-light);
-        border-radius: 12px;
-        box-shadow: var(--shadow-sm);
+    /* Panels & Cards */
+    .nttbs-white-panel {
+        background: var(--nttbs-bg-card);
+        border: 1px solid var(--nttbs-border);
+        border-radius: 14px;
+        box-shadow: var(--nttbs-shadow-sm);
         overflow: hidden;
-        margin-bottom: 20px;
+        margin-bottom: 22px;
+        transition: box-shadow 0.2s ease, border-color 0.2s ease;
     }
-    .nte-white-panel:last-child {
+    .nttbs-white-panel:last-child {
         margin-bottom: 0;
     }
-    .nte-panel-header {
-        padding: 16px 20px;
-        border-bottom: 1px solid var(--border-light);
+    .nttbs-white-panel:hover {
+        box-shadow: var(--nttbs-shadow-md);
+    }
+    .nttbs-panel-header {
+        padding: 18px 24px;
+        border-bottom: 1px solid var(--nttbs-border);
         display: flex;
         align-items: center;
         justify-content: space-between;
-        background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(0,0,0,0.02) 100%);
+        background: linear-gradient(180deg, #ffffff 0%, var(--nttbs-bg-body) 100%);
     }
-    .nte-panel-header h3 {
-        font-size: 14px;
+    .nttbs-panel-header h3 {
+        font-size: 14.5px;
         font-weight: 800;
         margin: 0;
-        color: var(--text-main);
+        color: var(--nttbs-text-heading);
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 10px;
+        letter-spacing: -0.2px;
     }
-    .nte-table-responsive {
+
+    /* Responsive Data Tables */
+    .nttbs-table-responsive {
         width: 100%;
         overflow-x: auto;
     }
-    .nte-data-table {
+    .nttbs-data-table {
         width: 100%;
         border-collapse: separate;
         border-spacing: 0;
         font-size: 13px;
         text-align: left;
     }
-    .nte-data-table th {
-        background-color: var(--bg-subtle);
-        color: var(--text-muted);
+    .nttbs-data-table th {
+        background-color: var(--nttbs-bg-body);
+        color: var(--nttbs-text-muted);
         font-size: 11px;
         font-weight: 800;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
-        padding: 11px 18px;
-        border-bottom: 1px solid var(--border-light);
+        letter-spacing: 0.6px;
+        padding: 12px 20px;
+        border-bottom: 1px solid var(--nttbs-border);
         white-space: nowrap;
     }
-    .nte-data-table td {
-        padding: 14px 18px;
-        border-bottom: 1px solid var(--border-light);
-        color: var(--text-main);
+    .nttbs-data-table td {
+        padding: 15px 20px;
+        border-bottom: 1px solid var(--nttbs-border);
+        color: var(--nttbs-text-body);
         vertical-align: middle;
+        transition: background-color 0.12s ease;
     }
-    .nte-data-table tr:last-child td {
+    .nttbs-data-table tr:last-child td {
         border-bottom: none;
     }
-    .nte-data-table tr:hover td {
-        background-color: var(--bg-subtle);
+    .nttbs-data-table tr:hover td {
+        background-color: var(--nttbs-bg-hover);
     }
 
-    /* Dynamic Action Buttons */
-    .nte-btn-icon-danger {
-        background-color: var(--c-rose-bg);
-        border: 1px solid var(--c-rose-border);
-        color: var(--c-rose);
-        border-radius: 6px;
-        padding: 5px 10px;
-        font-size: 11px;
+    /* Micro Action Buttons */
+    .nttbs-btn-icon-danger {
+        background-color: var(--nttbs-rose-subtle);
+        border: 1px solid var(--nttbs-rose-border);
+        color: var(--nttbs-rose);
+        border-radius: 8px;
+        padding: 6px 12px;
+        font-size: 11.5px;
         font-weight: 700;
         cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
         transition: all 0.15s ease;
     }
-    .nte-btn-icon-danger:hover {
-        background-color: var(--c-rose);
+    .nttbs-btn-icon-danger:hover {
+        background-color: var(--nttbs-rose);
         color: #ffffff;
+        box-shadow: 0 2px 6px rgba(244, 63, 94, 0.3);
     }
 
-    .nte-status-pill {
+    .nttbs-btn-drop-row {
+        background: transparent;
+        border: 1px solid transparent;
+        color: var(--nttbs-text-muted);
+        cursor: pointer;
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        line-height: 1;
+        transition: all 0.15s ease;
+    }
+    .nttbs-btn-drop-row:hover {
+        background-color: var(--nttbs-rose-subtle);
+        border-color: var(--nttbs-rose-border);
+        color: var(--nttbs-rose);
+    }
+
+    /* Status Pills */
+    .nttbs-status-pill {
         display: inline-flex;
         align-items: center;
         gap: 6px;
-        padding: 3px 8px;
+        padding: 3px 9px;
         border-radius: 999px;
         font-size: 11px;
         font-weight: 700;
-        letter-spacing: 0.2px;
+        letter-spacing: 0.3px;
         text-transform: uppercase;
     }
-    .nte-status-pill::before {
+    .nttbs-status-pill::before {
         content: '';
         width: 6px;
         height: 6px;
         border-radius: 50%;
     }
-    .nte-status-confirmed {
-        background-color: var(--c-emerald-bg);
-        border: 1px solid var(--c-emerald-border);
-        color: var(--c-emerald);
+    .nttbs-status-confirmed {
+        background-color: var(--nttbs-emerald-subtle);
+        border: 1px solid var(--nttbs-emerald-border);
+        color: var(--nttbs-emerald);
     }
-    .nte-status-confirmed::before {
-        background-color: var(--c-emerald);
+    .nttbs-status-confirmed::before {
+        background-color: var(--nttbs-emerald);
     }
-    .nte-status-cancelled {
-        background-color: var(--c-rose-bg);
-        border: 1px solid var(--c-rose-border);
-        color: var(--c-rose);
+    .nttbs-status-cancelled {
+        background-color: var(--nttbs-rose-subtle);
+        border: 1px solid var(--nttbs-rose-border);
+        color: var(--nttbs-rose);
     }
-    .nte-status-cancelled::before {
-        background-color: var(--c-rose);
+    .nttbs-status-cancelled::before {
+        background-color: var(--nttbs-rose);
+    }
+    .nttbs-status-pending {
+        background-color: var(--nttbs-amber-subtle);
+        border: 1px solid var(--nttbs-amber-border);
+        color: var(--nttbs-amber);
+    }
+    .nttbs-status-pending::before {
+        background-color: var(--nttbs-amber);
+    }
+
+    /* Workspace 2-Column Responsive Layout */
+    .nttbs-booking-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 2.3fr) minmax(0, 1fr);
+        gap: 24px;
+        align-items: start;
+    }
+    @media (max-width: 1200px) {
+        .nttbs-booking-grid {
+            grid-template-columns: 1fr;
+        }
     }
 </style>
 
-<div class="nte-booking-shell">
+<div class="nttbs-booking-shell">
 
     <!-- Subnav Tabs -->
-    <div class="nte-subnav-bar">
-        <div style="display:flex; gap:10px;">
+    <div class="nttbs-subnav-bar">
+        <div class="nttbs-subnav-group">
             <a href="<?php echo esc_url(admin_url('admin.php?page=nttbs-core&view=bookings&subtab=all')); ?>" 
-               class="nte-pill-toggle <?php echo $current_subtab === 'all' ? 'active' : 'inactive'; ?>">
-                <span class="nte-nav-icon"><?php echo nttbs_svg_icon('bookings', 16, 16); ?></span>
-                <?php esc_html_e('Reservation Ledger', 'nahian-tour-travel-booking-solution'); ?>
-                <span style="background:rgba(255,255,255,0.2); font-size:11px; padding:2px 7px; border-radius:999px; margin-left:4px;">
-                    <?php echo count($bookings); ?>
-                </span>
+               class="nttbs-pill-toggle <?php echo $current_subtab === 'all' ? 'active' : 'inactive'; ?>">
+                <span class="nttbs-nav-icon"><?php echo nttbs_svg_icon('bookings', 16, 16); ?></span>
+                <span><?php esc_html_e('Reservation Ledger', 'nahian-tour-travel-booking-solution'); ?></span>
+                <span class="nttbs-pill-badge"><?php echo count($bookings); ?></span>
             </a>
             <a href="<?php echo esc_url(admin_url('admin.php?page=nttbs-core&view=bookings&subtab=add')); ?>" 
-               class="nte-pill-toggle <?php echo $current_subtab === 'add' ? 'active' : 'inactive'; ?>">
-                <span>+</span> <?php esc_html_e('New Reservation', 'nahian-tour-travel-booking-solution'); ?>
+               class="nttbs-pill-toggle <?php echo $current_subtab === 'add' ? 'active' : 'inactive'; ?>">
+                <span>+</span>
+                <span><?php esc_html_e('New Reservation', 'nahian-tour-travel-booking-solution'); ?></span>
             </a>
         </div>
 
         <?php if ($status_flag === 'created'): ?>
-            <div class="nte-alert nte-alert-success">
-                <span class="nte-nav-icon"><?php echo nttbs_svg_icon('check', 16, 16); ?></span>
-                <?php printf(esc_html__('Booking confirmed successfully: Code %s', 'nahian-tour-travel-booking-solution'), '<strong>' . esc_html($status_code) . '</strong>'); ?>
+            <div class="nttbs-alert nttbs-alert-success">
+                <span class="nttbs-nav-icon"><?php echo nttbs_svg_icon('check', 16, 16); ?></span>
+                <span><?php printf(esc_html__('Booking confirmed successfully: Code %s', 'nahian-tour-travel-booking-solution'), '<strong style="font-family:\'JetBrains Mono\', monospace;">' . esc_html($status_code) . '</strong>'); ?></span>
             </div>
         <?php elseif ($status_flag === 'cancelled'): ?>
-            <div class="nte-alert nte-alert-danger">
-                <span class="nte-nav-icon"><?php echo nttbs_svg_icon('close', 16, 16); ?></span>
-                <?php esc_html_e('Booking cancelled and seat inventory released.', 'nahian-tour-travel-booking-solution'); ?>
+            <div class="nttbs-alert nttbs-alert-danger">
+                <span class="nttbs-nav-icon"><?php echo nttbs_svg_icon('close', 16, 16); ?></span>
+                <span><?php esc_html_e('Booking cancelled and seat inventory released.', 'nahian-tour-travel-booking-solution'); ?></span>
             </div>
         <?php endif; ?>
     </div>
 
     <?php if ($current_subtab === 'all'): ?>
         <!-- TAB 1: ALL BOOKINGS LIST TABLE -->
-        <div class="nte-white-panel">
-            <div class="nte-panel-header">
+        <div class="nttbs-white-panel">
+            <div class="nttbs-panel-header">
                 <h3>
-                    <span class="nte-nav-icon icon-bookings"><?php echo nttbs_svg_icon('bookings', 18, 18); ?></span>
+                    <span class="nttbs-nav-icon nttbs-icon-bookings"><?php echo nttbs_svg_icon('bookings', 18, 18); ?></span>
                     <span><?php esc_html_e('Master Passenger Reservation Ledger', 'nahian-tour-travel-booking-solution'); ?></span>
                 </h3>
-                <a href="<?php echo esc_url(admin_url('admin.php?page=nttbs-core&view=bookings&subtab=add')); ?>" class="nte-btn-primary" style="padding:6px 14px; font-size:12px; text-decoration:none;">
+                <a href="<?php echo esc_url(admin_url('admin.php?page=nttbs-core&view=bookings&subtab=add')); ?>" class="nttbs-btn-primary" style="padding:7px 14px; font-size:12px; text-decoration:none;">
                     + <?php esc_html_e('Create Booking', 'nahian-tour-travel-booking-solution'); ?>
                 </a>
             </div>
-            <div class="nte-table-responsive">
-                <table class="nte-data-table">
+            <div class="nttbs-table-responsive">
+                <table class="nttbs-data-table">
                     <thead>
                         <tr>
                             <th><?php esc_html_e('Code', 'nahian-tour-travel-booking-solution'); ?></th>
@@ -486,37 +561,45 @@ $status_code = isset($_GET['code']) ? sanitize_text_field(wp_unslash($_GET['code
                     <tbody>
                         <?php if (empty($bookings)): ?>
                             <tr>
-                                <td colspan="7" style="text-align:center; padding:36px; color:var(--text-muted);">
+                                <td colspan="7" style="text-align:center; padding:44px 20px; color:var(--nttbs-text-muted);">
                                     <?php esc_html_e('No active reservation records found in the ledger database.', 'nahian-tour-travel-booking-solution'); ?>
                                 </td>
                             </tr>
                         <?php else: foreach ($bookings as $b): ?>
                             <tr>
                                 <td>
-                                    <code style="font-family:ui-monospace, monospace; font-size:12px; font-weight:800; color:var(--c-blue); background:var(--c-blue-bg); padding:3px 6px; border-radius:4px; border:1px solid var(--c-blue-border);">
+                                    <code style="font-family:'JetBrains Mono', monospace; font-size:12px; font-weight:800; color:var(--nttbs-primary-dark); background:var(--nttbs-primary-subtle); padding:4px 8px; border-radius:6px; border:1px solid var(--nttbs-primary-border);">
                                         <?php echo esc_html($b['booking_code']); ?>
                                     </code>
                                 </td>
                                 <td>
-                                    <strong style="color:var(--text-main); font-weight:800;"><?php echo esc_html($b['customer_name']); ?></strong><br>
-                                    <span style="color:var(--text-muted); font-size:11px;"><?php echo esc_html($b['customer_email']); ?></span>
+                                    <strong style="color:var(--nttbs-text-heading); font-weight:800;"><?php echo esc_html($b['customer_name']); ?></strong><br>
+                                    <span style="color:var(--nttbs-text-muted); font-size:11.5px;"><?php echo esc_html($b['customer_email']); ?></span>
                                 </td>
                                 <td>
-                                    <div style="font-weight:700; color:var(--text-main);"><?php echo esc_html($b['trip_name']); ?></div>
+                                    <div style="font-weight:700; color:var(--nttbs-text-heading);"><?php echo esc_html($b['trip_name']); ?></div>
                                 </td>
                                 <td>
-                                    <span style="background-color:var(--c-purple-bg); color:var(--c-purple); border:1px solid var(--c-purple-border); padding:2px 7px; border-radius:6px; font-weight:800; font-size:11px;">
+                                    <span style="background-color:var(--nttbs-purple-subtle); color:var(--nttbs-purple); border:1px solid var(--nttbs-purple-border); padding:3px 8px; border-radius:6px; font-weight:800; font-size:11px; font-family:'JetBrains Mono', monospace;">
                                         <?php echo esc_html($b['assigned_seats']); ?>
                                     </span>
                                 </td>
                                 <td>
-                                    <strong style="font-weight:800; color:var(--text-main);">
+                                    <strong style="font-weight:800; color:var(--nttbs-text-heading); font-family:'JetBrains Mono', monospace;">
                                         <?php echo esc_html($currency . ' ' . number_format_i18n((float)$b['total_amount'], 2)); ?>
                                     </strong>
                                 </td>
                                 <td>
-                                    <?php $is_confirmed = ($b['status'] === 'confirmed'); ?>
-                                    <span class="nte-status-pill <?php echo $is_confirmed ? 'nte-status-confirmed' : 'nte-status-cancelled'; ?>">
+                                    <?php 
+                                    $b_status = strtolower($b['status']);
+                                    $pill_class = 'nttbs-status-pending';
+                                    if ($b_status === 'confirmed') {
+                                        $pill_class = 'nttbs-status-confirmed';
+                                    } elseif ($b_status === 'cancelled') {
+                                        $pill_class = 'nttbs-status-cancelled';
+                                    }
+                                    ?>
+                                    <span class="nttbs-status-pill <?php echo esc_attr($pill_class); ?>">
                                         <?php echo esc_html(strtoupper($b['status'])); ?>
                                     </span>
                                 </td>
@@ -525,12 +608,12 @@ $status_code = isset($_GET['code']) ? sanitize_text_field(wp_unslash($_GET['code
                                         <form method="post" style="display:inline;" onsubmit="return confirm('<?php echo esc_js(__('Are you sure you want to cancel this booking and restore allocated seats?', 'nahian-tour-travel-booking-solution')); ?>');">
                                             <?php wp_nonce_field('nttbs_cancel_nonce'); ?>
                                             <input type="hidden" name="booking_id" value="<?php echo esc_attr($b['id']); ?>">
-                                            <button type="submit" name="nttbs_dispatch_booking_cancel" class="nte-btn-icon-danger">
+                                            <button type="submit" name="nttbs_dispatch_booking_cancel" class="nttbs-btn-icon-danger">
                                                 <?php esc_html_e('Cancel & Release', 'nahian-tour-travel-booking-solution'); ?>
                                             </button>
                                         </form>
                                     <?php else: ?>
-                                        <span style="color:var(--text-muted); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px;">
+                                        <span style="color:var(--nttbs-text-muted); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px;">
                                             <?php esc_html_e('Archived', 'nahian-tour-travel-booking-solution'); ?>
                                         </span>
                                     <?php endif; ?>
@@ -548,34 +631,34 @@ $status_code = isset($_GET['code']) ? sanitize_text_field(wp_unslash($_GET['code
             <?php wp_nonce_field('nttbs_comp_booking_nonce'); ?>
             <input type="hidden" name="calculated_total" id="nttbs_input_calculated_total" value="0.00">
 
-            <div style="display:grid; grid-template-columns: minmax(0, 2.3fr) minmax(0, 1fr); gap:24px; align-items:start;">
+            <div class="nttbs-booking-grid">
                 
                 <!-- Main Booking Steps -->
                 <div>
                     <!-- 1. Trip Configuration Section -->
-                    <div class="nte-white-panel">
-                        <div class="nte-panel-header">
+                    <div class="nttbs-white-panel">
+                        <div class="nttbs-panel-header">
                             <h3>
-                                <span class="nte-nav-icon icon-trips"><?php echo nttbs_svg_icon('trips', 18, 18); ?></span>
+                                <span class="nttbs-nav-icon nttbs-icon-trips"><?php echo nttbs_svg_icon('trips', 18, 18); ?></span>
                                 <span><?php esc_html_e('Tour Expedition Parameters', 'nahian-tour-travel-booking-solution'); ?></span>
                             </h3>
                         </div>
-                        <div style="padding:20px;">
-                            <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:16px;">
-                                <div class="nte-field-row">
-                                    <label class="nte-field-label"><?php esc_html_e('Manifest Reference Code', 'nahian-tour-travel-booking-solution'); ?></label>
-                                    <input type="text" name="trip_code" id="nttbs_trip_code" class="nte-control-input" value="NT-<?php echo strtoupper(wp_generate_password(6, false, false)); ?>" readonly>
+                        <div style="padding:24px;">
+                            <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:18px;">
+                                <div class="nttbs-field-row">
+                                    <label class="nttbs-field-label"><?php esc_html_e('Manifest Reference Code', 'nahian-tour-travel-booking-solution'); ?></label>
+                                    <input type="text" name="trip_code" id="nttbs_trip_code" class="nttbs-control-input" value="NT-<?php echo strtoupper(wp_generate_password(6, false, false)); ?>" readonly style="font-family:'JetBrains Mono', monospace; font-weight:700; color:var(--nttbs-primary-dark); background:var(--nttbs-primary-subtle);">
                                 </div>
-                                <div class="nte-field-row">
-                                    <label class="nte-field-label"><?php esc_html_e('Booking Entry Date', 'nahian-tour-travel-booking-solution'); ?></label>
-                                    <input type="date" name="booked_date" class="nte-control-input" value="<?php echo date('Y-m-d'); ?>">
+                                <div class="nttbs-field-row">
+                                    <label class="nttbs-field-label"><?php esc_html_e('Booking Entry Date', 'nahian-tour-travel-booking-solution'); ?></label>
+                                    <input type="date" name="booked_date" class="nttbs-control-input" value="<?php echo date('Y-m-d'); ?>">
                                 </div>
                             </div>
 
-                            <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:16px;">
-                                <div class="nte-field-row">
-                                    <label class="nte-field-label"><?php esc_html_e('Target Tour Package *', 'nahian-tour-travel-booking-solution'); ?></label>
-                                    <select name="trip_id" id="nttbs_trip_select" class="nte-control-input" required onchange="nttbsUpdateTripData(this)">
+                            <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:18px;">
+                                <div class="nttbs-field-row">
+                                    <label class="nttbs-field-label"><?php esc_html_e('Target Tour Package *', 'nahian-tour-travel-booking-solution'); ?></label>
+                                    <select name="trip_id" id="nttbs_trip_select" class="nttbs-control-input" required onchange="nttbsUpdateTripData(this)">
                                         <option value="" data-price="0" data-days="1">-- <?php esc_html_e('Select Tour Package', 'nahian-tour-travel-booking-solution'); ?> --</option>
                                         <?php foreach ($trips as $t): ?>
                                             <option value="<?php echo esc_attr($t['id']); ?>" data-price="<?php echo esc_attr($t['price_adult']); ?>" data-days="<?php echo esc_attr($t['duration_days']); ?>" data-title="<?php echo esc_attr($t['title']); ?>">
@@ -584,42 +667,42 @@ $status_code = isset($_GET['code']) ? sanitize_text_field(wp_unslash($_GET['code
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
-                                <div class="nte-field-row">
-                                    <label class="nte-field-label"><?php esc_html_e('Passenger Count *', 'nahian-tour-travel-booking-solution'); ?></label>
-                                    <input type="number" name="num_travelers" id="nttbs_num_travelers" min="1" max="24" value="1" class="nte-control-input" required oninput="nttbsSyncTravelerRows(this.value)">
+                                <div class="nttbs-field-row">
+                                    <label class="nttbs-field-label"><?php esc_html_e('Passenger Count *', 'nahian-tour-travel-booking-solution'); ?></label>
+                                    <input type="number" name="num_travelers" id="nttbs_num_travelers" min="1" max="24" value="1" class="nttbs-control-input" required oninput="nttbsSyncTravelerRows(this.value)">
                                 </div>
                             </div>
 
-                            <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:16px;">
-                                <div class="nte-field-row">
-                                    <label class="nte-field-label"><?php esc_html_e('Designation', 'nahian-tour-travel-booking-solution'); ?></label>
-                                    <input type="text" id="nttbs_package_name_disp" class="nte-control-input" placeholder="<?php esc_attr_e('Auto-resolved', 'nahian-tour-travel-booking-solution'); ?>" readonly>
+                            <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:18px;">
+                                <div class="nttbs-field-row">
+                                    <label class="nttbs-field-label"><?php esc_html_e('Package Title', 'nahian-tour-travel-booking-solution'); ?></label>
+                                    <input type="text" id="nttbs_package_name_disp" class="nttbs-control-input" placeholder="<?php esc_attr_e('Auto-resolved', 'nahian-tour-travel-booking-solution'); ?>" readonly style="background:var(--nttbs-bg-body);">
                                 </div>
-                                <div class="nte-field-row">
-                                    <label class="nte-field-label"><?php esc_html_e('Expedition Start', 'nahian-tour-travel-booking-solution'); ?></label>
-                                    <input type="date" name="start_date" id="nttbs_start_date" class="nte-control-input" value="<?php echo date('Y-m-d'); ?>" onchange="nttbsCalculateEndDate()">
+                                <div class="nttbs-field-row">
+                                    <label class="nttbs-field-label"><?php esc_html_e('Expedition Start', 'nahian-tour-travel-booking-solution'); ?></label>
+                                    <input type="date" name="start_date" id="nttbs_start_date" class="nttbs-control-input" value="<?php echo date('Y-m-d'); ?>" onchange="nttbsCalculateEndDate()">
                                 </div>
-                                <div class="nte-field-row">
-                                    <label class="nte-field-label"><?php esc_html_e('Expedition Conclusion', 'nahian-tour-travel-booking-solution'); ?></label>
-                                    <input type="date" name="end_date" id="nttbs_end_date" class="nte-control-input" value="<?php echo date('Y-m-d', strtotime('+2 days')); ?>" readonly>
+                                <div class="nttbs-field-row">
+                                    <label class="nttbs-field-label"><?php esc_html_e('Expedition Conclusion', 'nahian-tour-travel-booking-solution'); ?></label>
+                                    <input type="date" name="end_date" id="nttbs_end_date" class="nttbs-control-input" value="<?php echo date('Y-m-d', strtotime('+2 days')); ?>" readonly style="background:var(--nttbs-bg-body);">
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- 2. Passenger Manifest Allocation -->
-                    <div class="nte-white-panel">
-                        <div class="nte-panel-header">
+                    <div class="nttbs-white-panel">
+                        <div class="nttbs-panel-header">
                             <h3>
-                                <span class="nte-nav-icon icon-customers"><?php echo nttbs_svg_icon('customers', 18, 18); ?></span>
+                                <span class="nttbs-nav-icon nttbs-icon-customers"><?php echo nttbs_svg_icon('customers', 18, 18); ?></span>
                                 <span><?php esc_html_e('Manifest Passenger Roster', 'nahian-tour-travel-booking-solution'); ?></span>
                             </h3>
-                            <button type="button" onclick="nttbsAddTravelerRow()" class="nte-btn-primary" style="padding:6px 12px; font-size:12px; background:var(--c-emerald);">
+                            <button type="button" onclick="nttbsAddTravelerRow()" class="nttbs-btn-emerald">
                                 + <?php esc_html_e('Add Passenger', 'nahian-tour-travel-booking-solution'); ?>
                             </button>
                         </div>
-                        <div class="nte-table-responsive">
-                            <table class="nte-data-table" id="nttbs_travelers_table">
+                        <div class="nttbs-table-responsive">
+                            <table class="nttbs-data-table" id="nttbs_travelers_table">
                                 <thead>
                                     <tr>
                                         <th><?php esc_html_e('Full Passenger Name', 'nahian-tour-travel-booking-solution'); ?></th>
@@ -629,16 +712,16 @@ $status_code = isset($_GET['code']) ? sanitize_text_field(wp_unslash($_GET['code
                                 </thead>
                                 <tbody id="nttbs_travelers_tbody">
                                     <tr>
-                                        <td><input type="text" name="traveler_name[]" class="nte-control-input" placeholder="<?php esc_attr_e('First and last name', 'nahian-tour-travel-booking-solution'); ?>" required></td>
+                                        <td><input type="text" name="traveler_name[]" class="nttbs-control-input" placeholder="<?php esc_attr_e('First and last name', 'nahian-tour-travel-booking-solution'); ?>" required></td>
                                         <td>
-                                            <select name="traveler_type[]" class="nte-control-input" onchange="nttbsRecalculateTotals()">
+                                            <select name="traveler_type[]" class="nttbs-control-input" onchange="nttbsRecalculateTotals()">
                                                 <option value="adult" data-mod="1.0"><?php esc_html_e('Adult (100% Tariff)', 'nahian-tour-travel-booking-solution'); ?></option>
                                                 <option value="child" data-mod="0.6"><?php esc_html_e('Child (60% Tariff)', 'nahian-tour-travel-booking-solution'); ?></option>
                                                 <option value="infant" data-mod="0.1"><?php esc_html_e('Infant (10% Tariff)', 'nahian-tour-travel-booking-solution'); ?></option>
                                             </select>
                                         </td>
                                         <td style="text-align:center;">
-                                            <button type="button" onclick="nttbsRemoveRow(this)" class="nte-btn-icon-danger">&times;</button>
+                                            <button type="button" onclick="nttbsRemoveRow(this)" class="nttbs-btn-drop-row" aria-label="<?php esc_attr_e('Remove row', 'nahian-tour-travel-booking-solution'); ?>">&times;</button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -646,34 +729,34 @@ $status_code = isset($_GET['code']) ? sanitize_text_field(wp_unslash($_GET['code
                         </div>
                     </div>
 
-                    <!-- 3. Emergency Contacts -->
-                    <div class="nte-white-panel">
-                        <div class="nte-panel-header">
+                    <!-- 3. Safety & Emergency Escorts -->
+                    <div class="nttbs-white-panel">
+                        <div class="nttbs-panel-header">
                             <h3>
-                                <span class="nte-nav-icon"><?php echo nttbs_svg_icon('activity', 18, 18); ?></span>
+                                <span class="nttbs-nav-icon nttbs-icon-activity"><?php echo nttbs_svg_icon('activity', 18, 18); ?></span>
                                 <span><?php esc_html_e('Safety & Emergency Escorts', 'nahian-tour-travel-booking-solution'); ?></span>
                             </h3>
-                            <button type="button" onclick="nttbsAddEmergencyRow()" class="nte-btn-primary" style="padding:6px 12px; font-size:12px; background:var(--c-teal);">
+                            <button type="button" onclick="nttbsAddEmergencyRow()" class="nttbs-btn-primary" style="padding:7px 14px; font-size:12px; background:linear-gradient(135deg, var(--nttbs-teal), #0d9488);">
                                 + <?php esc_html_e('Add Contact', 'nahian-tour-travel-booking-solution'); ?>
                             </button>
                         </div>
-                        <div class="nte-table-responsive">
-                            <table class="nte-data-table" id="nttbs_emergency_table">
+                        <div class="nttbs-table-responsive">
+                            <table class="nttbs-data-table" id="nttbs_emergency_table">
                                 <thead>
                                     <tr>
                                         <th><?php esc_html_e('Contact Name', 'nahian-tour-travel-booking-solution'); ?></th>
-                                        <th><?php esc_html_e('Relation', 'nahian-tour-travel-booking-solution'); ?></th>
+                                        <th><?php esc_html_e('Relationship', 'nahian-tour-travel-booking-solution'); ?></th>
                                         <th><?php esc_html_e('Emergency Phone', 'nahian-tour-travel-booking-solution'); ?></th>
                                         <th style="width:60px; text-align:center;"><?php esc_html_e('Drop', 'nahian-tour-travel-booking-solution'); ?></th>
                                     </tr>
                                 </thead>
                                 <tbody id="nttbs_emergency_tbody">
                                     <tr>
-                                        <td><input type="text" name="emergency_name[]" class="nte-control-input" placeholder="<?php esc_attr_e('Full contact name', 'nahian-tour-travel-booking-solution'); ?>"></td>
-                                        <td><input type="text" name="emergency_rel[]" class="nte-control-input" placeholder="<?php esc_attr_e('e.g. Spouse / Agent', 'nahian-tour-travel-booking-solution'); ?>"></td>
-                                        <td><input type="text" name="emergency_phone[]" class="nte-control-input" placeholder="+00 000 000 0000"></td>
+                                        <td><input type="text" name="emergency_name[]" class="nttbs-control-input" placeholder="<?php esc_attr_e('Full contact name', 'nahian-tour-travel-booking-solution'); ?>"></td>
+                                        <td><input type="text" name="emergency_rel[]" class="nttbs-control-input" placeholder="<?php esc_attr_e('e.g. Spouse / Agent', 'nahian-tour-travel-booking-solution'); ?>"></td>
+                                        <td><input type="text" name="emergency_phone[]" class="nttbs-control-input" placeholder="+1 234 567 8900"></td>
                                         <td style="text-align:center;">
-                                            <button type="button" onclick="nttbsRemoveRow(this)" class="nte-btn-icon-danger">&times;</button>
+                                            <button type="button" onclick="nttbsRemoveRow(this)" class="nttbs-btn-drop-row" aria-label="<?php esc_attr_e('Remove row', 'nahian-tour-travel-booking-solution'); ?>">&times;</button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -682,18 +765,18 @@ $status_code = isset($_GET['code']) ? sanitize_text_field(wp_unslash($_GET['code
                     </div>
 
                     <!-- 4. Payment Tranches -->
-                    <div class="nte-white-panel">
-                        <div class="nte-panel-header">
+                    <div class="nttbs-white-panel">
+                        <div class="nttbs-panel-header">
                             <h3>
-                                <span class="nte-nav-icon"><?php echo nttbs_svg_icon('wallet', 18, 18); ?></span>
+                                <span class="nttbs-nav-icon nttbs-icon-price_cat"><?php echo nttbs_svg_icon('price_cat', 18, 18); ?></span>
                                 <span><?php esc_html_e('Payment Tranches & POS Collection', 'nahian-tour-travel-booking-solution'); ?></span>
                             </h3>
-                            <button type="button" onclick="nttbsAddPaymentRow()" class="nte-btn-primary" style="padding:6px 12px; font-size:12px; background:var(--c-amber);">
+                            <button type="button" onclick="nttbsAddPaymentRow()" class="nttbs-btn-primary" style="padding:7px 14px; font-size:12px; background:linear-gradient(135deg, var(--nttbs-amber), #d97706);">
                                 + <?php esc_html_e('Add Payment Record', 'nahian-tour-travel-booking-solution'); ?>
                             </button>
                         </div>
-                        <div class="nte-table-responsive">
-                            <table class="nte-data-table">
+                        <div class="nttbs-table-responsive">
+                            <table class="nttbs-data-table">
                                 <thead>
                                     <tr>
                                         <th><?php esc_html_e('Collection Method', 'nahian-tour-travel-booking-solution'); ?></th>
@@ -705,17 +788,17 @@ $status_code = isset($_GET['code']) ? sanitize_text_field(wp_unslash($_GET['code
                                 <tbody id="nttbs_payment_tbody">
                                     <tr>
                                         <td>
-                                            <select name="payment_method_name[]" class="nte-control-input">
+                                            <select name="payment_method_name[]" class="nttbs-control-input">
                                                 <option value="Counter Cash"><?php esc_html_e('Counter Cash', 'nahian-tour-travel-booking-solution'); ?></option>
                                                 <option value="Credit Card"><?php esc_html_e('Terminal Card (POS)', 'nahian-tour-travel-booking-solution'); ?></option>
                                                 <option value="Bank Transfer"><?php esc_html_e('Bank Wire', 'nahian-tour-travel-booking-solution'); ?></option>
                                                 <option value="Online Gateway"><?php esc_html_e('Online Gateway', 'nahian-tour-travel-booking-solution'); ?></option>
                                             </select>
                                         </td>
-                                        <td><input type="text" name="payment_ref[]" class="nte-control-input" placeholder="<?php esc_attr_e('Auth code / Reference', 'nahian-tour-travel-booking-solution'); ?>"></td>
-                                        <td><input type="number" step="0.01" name="payment_amount[]" class="nte-control-input nte-pay-input" value="0.00" oninput="nttbsRecalculateTotals()"></td>
+                                        <td><input type="text" name="payment_ref[]" class="nttbs-control-input" placeholder="<?php esc_attr_e('Auth code / Reference', 'nahian-tour-travel-booking-solution'); ?>"></td>
+                                        <td><input type="number" step="0.01" name="payment_amount[]" class="nttbs-control-input nttbs-pay-input" value="0.00" oninput="nttbsRecalculateTotals()"></td>
                                         <td style="text-align:center;">
-                                            <button type="button" onclick="nttbsRemoveRow(this)" class="nte-btn-icon-danger">&times;</button>
+                                            <button type="button" onclick="nttbsRemoveRow(this)" class="nttbs-btn-drop-row" aria-label="<?php esc_attr_e('Remove row', 'nahian-tour-travel-booking-solution'); ?>">&times;</button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -724,129 +807,129 @@ $status_code = isset($_GET['code']) ? sanitize_text_field(wp_unslash($_GET['code
                     </div>
 
                     <!-- 5. Lead Passenger Billing Details -->
-                    <div class="nte-white-panel">
-                        <div class="nte-panel-header">
+                    <div class="nttbs-white-panel">
+                        <div class="nttbs-panel-header">
                             <h3>
-                                <span class="nte-nav-icon"><?php echo nttbs_svg_icon('clipboard', 18, 18); ?></span>
+                                <span class="nttbs-nav-icon nttbs-icon-settings"><?php echo nttbs_svg_icon('settings', 18, 18); ?></span>
                                 <span><?php esc_html_e('Billing Profile & Lead Purchaser', 'nahian-tour-travel-booking-solution'); ?></span>
                             </h3>
                         </div>
-                        <div style="padding:20px;">
-                            <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:16px;">
-                                <div class="nte-field-row">
-                                    <label class="nte-field-label"><?php esc_html_e('First Name *', 'nahian-tour-travel-booking-solution'); ?></label>
-                                    <input type="text" name="billing_first_name" required class="nte-control-input" placeholder="<?php esc_attr_e('Passenger primary name', 'nahian-tour-travel-booking-solution'); ?>">
+                        <div style="padding:24px;">
+                            <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:18px;">
+                                <div class="nttbs-field-row">
+                                    <label class="nttbs-field-label"><?php esc_html_e('First Name *', 'nahian-tour-travel-booking-solution'); ?></label>
+                                    <input type="text" name="billing_first_name" required class="nttbs-control-input" placeholder="<?php esc_attr_e('e.g. John', 'nahian-tour-travel-booking-solution'); ?>">
                                 </div>
-                                <div class="nte-field-row">
-                                    <label class="nte-field-label"><?php esc_html_e('Last Name *', 'nahian-tour-travel-booking-solution'); ?></label>
-                                    <input type="text" name="billing_last_name" required class="nte-control-input" placeholder="<?php esc_attr_e('Passenger surname', 'nahian-tour-travel-booking-solution'); ?>">
-                                </div>
-                            </div>
-                            <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:16px;">
-                                <div class="nte-field-row">
-                                    <label class="nte-field-label"><?php esc_html_e('Email Address *', 'nahian-tour-travel-booking-solution'); ?></label>
-                                    <input type="email" name="billing_email" required class="nte-control-input" placeholder="traveler@domain.com">
-                                </div>
-                                <div class="nte-field-row">
-                                    <label class="nte-field-label"><?php esc_html_e('Contact Phone', 'nahian-tour-travel-booking-solution'); ?></label>
-                                    <input type="text" name="billing_phone" class="nte-control-input" placeholder="+00 000 000 0000">
+                                <div class="nttbs-field-row">
+                                    <label class="nttbs-field-label"><?php esc_html_e('Last Name *', 'nahian-tour-travel-booking-solution'); ?></label>
+                                    <input type="text" name="billing_last_name" required class="nttbs-control-input" placeholder="<?php esc_attr_e('e.g. Doe', 'nahian-tour-travel-booking-solution'); ?>">
                                 </div>
                             </div>
-                            <div class="nte-field-row">
-                                <label class="nte-field-label"><?php esc_html_e('Physical Address', 'nahian-tour-travel-booking-solution'); ?></label>
-                                <input type="text" name="billing_address" class="nte-control-input" placeholder="<?php esc_attr_e('Suite, street address, building...', 'nahian-tour-travel-booking-solution'); ?>">
-                            </div>
-                            <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:16px;">
-                                <div class="nte-field-row">
-                                    <label class="nte-field-label"><?php esc_html_e('City', 'nahian-tour-travel-booking-solution'); ?></label>
-                                    <input type="text" name="billing_city" class="nte-control-input" placeholder="e.g. Cairo">
+                            <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:18px;">
+                                <div class="nttbs-field-row">
+                                    <label class="nttbs-field-label"><?php esc_html_e('Email Address *', 'nahian-tour-travel-booking-solution'); ?></label>
+                                    <input type="email" name="billing_email" required class="nttbs-control-input" placeholder="traveler@domain.com">
                                 </div>
-                                <div class="nte-field-row">
-                                    <label class="nte-field-label"><?php esc_html_e('Country', 'nahian-tour-travel-booking-solution'); ?></label>
-                                    <input type="text" name="billing_country" class="nte-control-input" placeholder="e.g. Egypt">
+                                <div class="nttbs-field-row">
+                                    <label class="nttbs-field-label"><?php esc_html_e('Contact Phone', 'nahian-tour-travel-booking-solution'); ?></label>
+                                    <input type="text" name="billing_phone" class="nttbs-control-input" placeholder="+1 234 567 8900">
+                                </div>
+                            </div>
+                            <div class="nttbs-field-row">
+                                <label class="nttbs-field-label"><?php esc_html_e('Physical Address', 'nahian-tour-travel-booking-solution'); ?></label>
+                                <input type="text" name="billing_address" class="nttbs-control-input" placeholder="<?php esc_attr_e('Suite, street address, building...', 'nahian-tour-travel-booking-solution'); ?>">
+                            </div>
+                            <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:18px;">
+                                <div class="nttbs-field-row">
+                                    <label class="nttbs-field-label"><?php esc_html_e('City', 'nahian-tour-travel-booking-solution'); ?></label>
+                                    <input type="text" name="billing_city" class="nttbs-control-input" placeholder="e.g. London">
+                                </div>
+                                <div class="nttbs-field-row">
+                                    <label class="nttbs-field-label"><?php esc_html_e('Country', 'nahian-tour-travel-booking-solution'); ?></label>
+                                    <input type="text" name="billing_country" class="nttbs-control-input" placeholder="e.g. United Kingdom">
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- 6. Special Operational Directives -->
-                    <div class="nte-white-panel">
-                        <div class="nte-panel-header">
+                    <div class="nttbs-white-panel">
+                        <div class="nttbs-panel-header">
                             <h3>
-                                <span class="nte-nav-icon"><?php echo nttbs_svg_icon('settings', 18, 18); ?></span>
+                                <span class="nttbs-nav-icon nttbs-icon-shortcode"><?php echo nttbs_svg_icon('shortcode', 18, 18); ?></span>
                                 <span><?php esc_html_e('Special Operational Directives', 'nahian-tour-travel-booking-solution'); ?></span>
                             </h3>
                         </div>
-                        <div style="padding:20px;">
-                            <div class="nte-field-row" style="margin-bottom:0;">
-                                <textarea name="special_notes" rows="3" class="nte-control-input" placeholder="<?php esc_attr_e('Dietary notes, medical alerts, charter guide coordination notes...', 'nahian-tour-travel-booking-solution'); ?>"></textarea>
+                        <div style="padding:24px;">
+                            <div class="nttbs-field-row" style="margin-bottom:0;">
+                                <textarea name="special_notes" rows="3" class="nttbs-control-input" placeholder="<?php esc_attr_e('Dietary notes, medical alerts, charter guide coordination notes...', 'nahian-tour-travel-booking-solution'); ?>"></textarea>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Right Sticky Summary -->
-                <div style="position:sticky; top:20px; display:flex; flex-direction:column; gap:20px;">
-                    <div class="nte-white-panel" style="border-top:4px solid var(--c-blue);">
-                        <div class="nte-panel-header">
+                <div style="position:sticky; top:24px; display:flex; flex-direction:column; gap:20px;">
+                    <div class="nttbs-white-panel" style="border-top:4px solid var(--nttbs-primary);">
+                        <div class="nttbs-panel-header">
                             <h3><?php esc_html_e('Tariff Breakdown', 'nahian-tour-travel-booking-solution'); ?></h3>
                         </div>
-                        <div style="padding:20px; display:flex; flex-direction:column; gap:12px;">
+                        <div style="padding:22px; display:flex; flex-direction:column; gap:14px;">
                             <div style="display:flex; justify-content:space-between; font-size:13px;">
-                                <span style="color:var(--text-muted);"><?php esc_html_e('Passenger Count:', 'nahian-tour-travel-booking-solution'); ?></span>
-                                <strong id="summary_travelers_count" style="color:var(--text-main);">1</strong>
+                                <span style="color:var(--nttbs-text-muted);"><?php esc_html_e('Passenger Count:', 'nahian-tour-travel-booking-solution'); ?></span>
+                                <strong id="summary_travelers_count" style="color:var(--nttbs-text-heading); font-family:'JetBrains Mono', monospace;">1</strong>
                             </div>
                             <div style="display:flex; justify-content:space-between; font-size:13px;">
-                                <span style="color:var(--text-muted);"><?php esc_html_e('Gross Subtotal:', 'nahian-tour-travel-booking-solution'); ?></span>
-                                <strong id="summary_subtotal_amount" style="color:var(--text-main);"><?php echo esc_html($currency); ?> 0.00</strong>
+                                <span style="color:var(--nttbs-text-muted);"><?php esc_html_e('Gross Subtotal:', 'nahian-tour-travel-booking-solution'); ?></span>
+                                <strong id="summary_subtotal_amount" style="color:var(--nttbs-text-heading); font-family:'JetBrains Mono', monospace;"><?php echo esc_html($currency); ?> 0.00</strong>
                             </div>
                             <div style="display:flex; justify-content:space-between; font-size:13px;">
-                                <span style="color:var(--text-muted);"><?php printf(esc_html__('Tax (%s%%):', 'nahian-tour-travel-booking-solution'), esc_html($tax_percent)); ?></span>
-                                <strong id="summary_tax_amount" style="color:var(--text-main);"><?php echo esc_html($currency); ?> 0.00</strong>
+                                <span style="color:var(--nttbs-text-muted);"><?php printf(esc_html__('Tax (%s%%):', 'nahian-tour-travel-booking-solution'), esc_html($tax_percent)); ?></span>
+                                <strong id="summary_tax_amount" style="color:var(--nttbs-text-heading); font-family:'JetBrains Mono', monospace;"><?php echo esc_html($currency); ?> 0.00</strong>
                             </div>
-                            <div style="display:flex; justify-content:space-between; font-size:15px; font-weight:800; border-top:1px solid var(--border-light); padding-top:12px;">
-                                <span><?php esc_html_e('Net Total:', 'nahian-tour-travel-booking-solution'); ?></span>
-                                <strong style="color:var(--c-blue);" id="summary_total_amount"><?php echo esc_html($currency); ?> 0.00</strong>
+                            <div style="display:flex; justify-content:space-between; font-size:15px; font-weight:800; border-top:1px solid var(--nttbs-border); padding-top:14px;">
+                                <span style="color:var(--nttbs-text-heading);"><?php esc_html_e('Net Total:', 'nahian-tour-travel-booking-solution'); ?></span>
+                                <strong style="color:var(--nttbs-primary-dark); font-family:'JetBrains Mono', monospace; font-size:17px;" id="summary_total_amount"><?php echo esc_html($currency); ?> 0.00</strong>
                             </div>
                         </div>
                     </div>
 
-                    <div class="nte-white-panel" style="border-top:4px solid var(--c-emerald);">
-                        <div class="nte-panel-header">
+                    <div class="nttbs-white-panel" style="border-top:4px solid var(--nttbs-emerald);">
+                        <div class="nttbs-panel-header">
                             <h3><?php esc_html_e('Payment Status & Audit', 'nahian-tour-travel-booking-solution'); ?></h3>
                         </div>
-                        <div style="padding:20px; display:flex; flex-direction:column; gap:12px;">
+                        <div style="padding:22px; display:flex; flex-direction:column; gap:14px;">
                             <div style="display:flex; justify-content:space-between; font-size:13px;">
-                                <span style="color:var(--text-muted);"><?php esc_html_e('Deposit (50% Standard):', 'nahian-tour-travel-booking-solution'); ?></span>
-                                <strong id="summary_deposit_amount" style="color:var(--text-main);"><?php echo esc_html($currency); ?> 0.00</strong>
+                                <span style="color:var(--nttbs-text-muted);"><?php esc_html_e('Deposit (50% Standard):', 'nahian-tour-travel-booking-solution'); ?></span>
+                                <strong id="summary_deposit_amount" style="color:var(--nttbs-text-heading); font-family:'JetBrains Mono', monospace;"><?php echo esc_html($currency); ?> 0.00</strong>
                             </div>
                             <div style="display:flex; justify-content:space-between; font-size:14px; font-weight:800;">
-                                <span style="color:var(--c-emerald);"><?php esc_html_e('Total Collected:', 'nahian-tour-travel-booking-solution'); ?></span>
-                                <strong style="color:var(--c-emerald);" id="summary_paid_amount"><?php echo esc_html($currency); ?> 0.00</strong>
+                                <span style="color:var(--nttbs-emerald);"><?php esc_html_e('Total Collected:', 'nahian-tour-travel-booking-solution'); ?></span>
+                                <strong style="color:var(--nttbs-emerald); font-family:'JetBrains Mono', monospace;" id="summary_paid_amount"><?php echo esc_html($currency); ?> 0.00</strong>
                             </div>
-                            <div style="display:flex; justify-content:space-between; font-size:14px; font-weight:800; border-top:1px solid var(--border-light); padding-top:12px;">
-                                <span style="color:var(--c-rose);"><?php esc_html_e('Balance Due:', 'nahian-tour-travel-booking-solution'); ?></span>
-                                <strong style="color:var(--c-rose);" id="summary_amount_due"><?php echo esc_html($currency); ?> 0.00</strong>
+                            <div style="display:flex; justify-content:space-between; font-size:14px; font-weight:800; border-top:1px solid var(--nttbs-border); padding-top:14px;">
+                                <span style="color:var(--nttbs-rose);"><?php esc_html_e('Balance Due:', 'nahian-tour-travel-booking-solution'); ?></span>
+                                <strong style="color:var(--nttbs-rose); font-family:'JetBrains Mono', monospace;" id="summary_amount_due"><?php echo esc_html($currency); ?> 0.00</strong>
                             </div>
                             <input type="hidden" name="total_paid" id="nttbs_input_total_paid" value="0.00">
                         </div>
                     </div>
 
-                    <div class="nte-white-panel">
-                        <div class="nte-panel-header">
+                    <div class="nttbs-white-panel">
+                        <div class="nttbs-panel-header">
                             <h3><?php esc_html_e('Manifest Validation', 'nahian-tour-travel-booking-solution'); ?></h3>
                         </div>
-                        <div style="padding:20px;">
-                            <div class="nte-field-row" style="margin-bottom:16px;">
-                                <label class="nte-field-label"><?php esc_html_e('Initial Ledger State', 'nahian-tour-travel-booking-solution'); ?></label>
-                                <select name="booking_status" class="nte-control-input">
+                        <div style="padding:22px;">
+                            <div class="nttbs-field-row" style="margin-bottom:18px;">
+                                <label class="nttbs-field-label"><?php esc_html_e('Initial Ledger State', 'nahian-tour-travel-booking-solution'); ?></label>
+                                <select name="booking_status" class="nttbs-control-input">
                                     <option value="confirmed"><?php esc_html_e('Confirmed & Locked', 'nahian-tour-travel-booking-solution'); ?></option>
                                     <option value="pending" selected><?php esc_html_e('Pending Verification', 'nahian-tour-travel-booking-solution'); ?></option>
                                     <option value="cancelled"><?php esc_html_e('Cancelled', 'nahian-tour-travel-booking-solution'); ?></option>
                                 </select>
                             </div>
 
-                            <button type="submit" name="nttbs_dispatch_comprehensive_booking" class="nte-btn-primary" style="width:100%; padding:12px; font-size:13px;">
+                            <button type="submit" name="nttbs_dispatch_comprehensive_booking" class="nttbs-btn-primary" style="width:100%; padding:14px; font-size:13.5px;">
                                 <?php echo nttbs_svg_icon('check', 16, 16); ?>
                                 <?php esc_html_e('Save & Issue Manifest', 'nahian-tour-travel-booking-solution'); ?>
                             </button>
@@ -904,15 +987,15 @@ $status_code = isset($_GET['code']) ? sanitize_text_field(wp_unslash($_GET['code
             if (!tbody) return;
             const tr = document.createElement('tr');
             tr.innerHTML = `
-                <td><input type="text" name="traveler_name[]" class="nte-control-input" placeholder="First and last name" required></td>
+                <td><input type="text" name="traveler_name[]" class="nttbs-control-input" placeholder="<?php echo esc_js(__('First and last name', 'nahian-tour-travel-booking-solution')); ?>" required></td>
                 <td>
-                    <select name="traveler_type[]" class="nte-control-input" onchange="nttbsRecalculateTotals()">
+                    <select name="traveler_type[]" class="nttbs-control-input" onchange="nttbsRecalculateTotals()">
                         <option value="adult" data-mod="1.0"><?php echo esc_js(__('Adult (100% Tariff)', 'nahian-tour-travel-booking-solution')); ?></option>
                         <option value="child" data-mod="0.6"><?php echo esc_js(__('Child (60% Tariff)', 'nahian-tour-travel-booking-solution')); ?></option>
                         <option value="infant" data-mod="0.1"><?php echo esc_js(__('Infant (10% Tariff)', 'nahian-tour-travel-booking-solution')); ?></option>
                     </select>
                 </td>
-                <td style="text-align:center;"><button type="button" onclick="nttbsRemoveRow(this)" class="nte-btn-icon-danger">&times;</button></td>
+                <td style="text-align:center;"><button type="button" onclick="nttbsRemoveRow(this)" class="nttbs-btn-drop-row" aria-label="<?php echo esc_js(__('Remove row', 'nahian-tour-travel-booking-solution')); ?>">&times;</button></td>
             `;
             tbody.appendChild(tr);
             const countInput = document.getElementById('nttbs_num_travelers');
@@ -925,10 +1008,10 @@ $status_code = isset($_GET['code']) ? sanitize_text_field(wp_unslash($_GET['code
             if (!tbody) return;
             const tr = document.createElement('tr');
             tr.innerHTML = `
-                <td><input type="text" name="emergency_name[]" class="nte-control-input" placeholder="Full contact name"></td>
-                <td><input type="text" name="emergency_rel[]" class="nte-control-input" placeholder="e.g. Spouse / Agent"></td>
-                <td><input type="text" name="emergency_phone[]" class="nte-control-input" placeholder="+00 000 000 0000"></td>
-                <td style="text-align:center;"><button type="button" onclick="nttbsRemoveRow(this)" class="nte-btn-icon-danger">&times;</button></td>
+                <td><input type="text" name="emergency_name[]" class="nttbs-control-input" placeholder="<?php echo esc_js(__('Full contact name', 'nahian-tour-travel-booking-solution')); ?>"></td>
+                <td><input type="text" name="emergency_rel[]" class="nttbs-control-input" placeholder="<?php echo esc_js(__('e.g. Spouse / Agent', 'nahian-tour-travel-booking-solution')); ?>"></td>
+                <td><input type="text" name="emergency_phone[]" class="nttbs-control-input" placeholder="+1 234 567 8900"></td>
+                <td style="text-align:center;"><button type="button" onclick="nttbsRemoveRow(this)" class="nttbs-btn-drop-row" aria-label="<?php echo esc_js(__('Remove row', 'nahian-tour-travel-booking-solution')); ?>">&times;</button></td>
             `;
             tbody.appendChild(tr);
         }
@@ -939,16 +1022,16 @@ $status_code = isset($_GET['code']) ? sanitize_text_field(wp_unslash($_GET['code
             const tr = document.createElement('tr');
             tr.innerHTML = `
                 <td>
-                    <select name="payment_method_name[]" class="nte-control-input">
+                    <select name="payment_method_name[]" class="nttbs-control-input">
                         <option value="Counter Cash"><?php echo esc_js(__('Counter Cash', 'nahian-tour-travel-booking-solution')); ?></option>
                         <option value="Credit Card"><?php echo esc_js(__('Terminal Card (POS)', 'nahian-tour-travel-booking-solution')); ?></option>
                         <option value="Bank Transfer"><?php echo esc_js(__('Bank Wire', 'nahian-tour-travel-booking-solution')); ?></option>
                         <option value="Online Gateway"><?php echo esc_js(__('Online Gateway', 'nahian-tour-travel-booking-solution')); ?></option>
                     </select>
                 </td>
-                <td><input type="text" name="payment_ref[]" class="nte-control-input" placeholder="Auth code / Reference"></td>
-                <td><input type="number" step="0.01" name="payment_amount[]" class="nte-control-input nte-pay-input" value="0.00" oninput="nttbsRecalculateTotals()"></td>
-                <td style="text-align:center;"><button type="button" onclick="nttbsRemoveRow(this)" class="nte-btn-icon-danger">&times;</button></td>
+                <td><input type="text" name="payment_ref[]" class="nttbs-control-input" placeholder="<?php echo esc_js(__('Auth code / Reference', 'nahian-tour-travel-booking-solution')); ?>"></td>
+                <td><input type="number" step="0.01" name="payment_amount[]" class="nttbs-control-input nttbs-pay-input" value="0.00" oninput="nttbsRecalculateTotals()"></td>
+                <td style="text-align:center;"><button type="button" onclick="nttbsRemoveRow(this)" class="nttbs-btn-drop-row" aria-label="<?php echo esc_js(__('Remove row', 'nahian-tour-travel-booking-solution')); ?>">&times;</button></td>
             `;
             tbody.appendChild(tr);
         }
@@ -980,7 +1063,7 @@ $status_code = isset($_GET['code']) ? sanitize_text_field(wp_unslash($_GET['code
             const total = subtotal + tax;
 
             let paid = 0;
-            document.querySelectorAll('.nte-pay-input').forEach(input => {
+            document.querySelectorAll('.nttbs-pay-input').forEach(input => {
                 paid += parseFloat(input.value || 0);
             });
 

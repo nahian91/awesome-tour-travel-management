@@ -8,7 +8,7 @@ $shortcode_definitions = [
         'tag'         => '[nttbs_trips]',
         'category'    => __('Catalog & Booking', 'nahian-tour-travel-booking-solution'),
         'badge'       => __('Interactive Feed', 'nahian-tour-travel-booking-solution'),
-        'badge_color' => 'var(--c-blue)',
+        'badge_color' => 'var(--nttbs-primary)',
         'title'       => __('All Expeditions (Left Sidebar Filter & Grid/List View)', 'nahian-tour-travel-booking-solution'),
         'description' => __('Renders a full multi-filter tour catalog with instant Grid/List view switching, keyword search, price slider, and taxonomy filters.', 'nahian-tour-travel-booking-solution'),
         'example'     => '[nttbs_trips default_view="grid" per_page="12"]',
@@ -23,13 +23,13 @@ $shortcode_definitions = [
         'tag'         => '[nttbs_destinations]',
         'category'    => __('Showcase Grids', 'nahian-tour-travel-booking-solution'),
         'badge'       => __('Visual Grid', 'nahian-tour-travel-booking-solution'),
-        'badge_color' => 'var(--c-emerald)',
+        'badge_color' => 'var(--nttbs-emerald)',
         'title'       => __('Destinations Showcase Grid', 'nahian-tour-travel-booking-solution'),
         'description' => __('Displays responsive photo cards for registered harbors, islands, and regions with live expedition counts.', 'nahian-tour-travel-booking-solution'),
         'example'     => '[nttbs_destinations columns="3" limit="6"]',
         'attributes'  => [
-            'columns' => ['type' => 'integer', 'default' => '3', 'desc' => __('Grid columns layout (2, 3, or 4).', 'nahian-tour-travel-booking-solution')],
-            'limit'   => ['type' => 'integer', 'default' => '12', 'desc' => __('Maximum destination cards to render.', 'nahian-tour-travel-booking-solution')],
+            'columns'    => ['type' => 'integer', 'default' => '3', 'desc' => __('Grid columns layout (2, 3, or 4).', 'nahian-tour-travel-booking-solution')],
+            'limit'      => ['type' => 'integer', 'default' => '12', 'desc' => __('Maximum destination cards to render.', 'nahian-tour-travel-booking-solution')],
             'show_count' => ['type' => 'boolean', 'default' => 'true', 'desc' => __('Show count badge of active tours in region.', 'nahian-tour-travel-booking-solution')]
         ]
     ],
@@ -37,7 +37,7 @@ $shortcode_definitions = [
         'tag'         => '[nttbs_activities]',
         'category'    => __('Showcase Grids', 'nahian-tour-travel-booking-solution'),
         'badge'       => __('Visual Grid', 'nahian-tour-travel-booking-solution'),
-        'badge_color' => 'var(--c-purple)',
+        'badge_color' => 'var(--nttbs-purple)',
         'title'       => __('Activities Showcase Grid', 'nahian-tour-travel-booking-solution'),
         'description' => __('Shows excursion categories (Snorkeling, Quad Safari, Yacht Cruises) with badge indicators and quick discovery links.', 'nahian-tour-travel-booking-solution'),
         'example'     => '[nttbs_activities columns="4" limit="8"]',
@@ -50,20 +50,20 @@ $shortcode_definitions = [
         'tag'         => '[nttbs_booking_lookup]',
         'category'    => __('Search & Utility', 'nahian-tour-travel-booking-solution'),
         'badge'       => __('Customer Self-Service', 'nahian-tour-travel-booking-solution'),
-        'badge_color' => 'var(--c-teal)',
+        'badge_color' => 'var(--nttbs-teal)',
         'title'       => __('Passenger Reservation & Manifest Lookup', 'nahian-tour-travel-booking-solution'),
         'description' => __('Self-service portal where customers input their Booking Code and Email to check boarding status and download printable PDF vouchers.', 'nahian-tour-travel-booking-solution'),
         'example'     => '[nttbs_booking_lookup allow_print="true"]',
         'attributes'  => [
             'allow_print'  => ['type' => 'boolean', 'default' => 'true', 'desc' => __('Permit one-click browser print of vouchers.', 'nahian-tour-travel-booking-solution')],
-            'accent_color' => ['type' => 'string', 'default' => '#2563eb', 'desc' => __('Custom theme color for lookup button & header.', 'nahian-tour-travel-booking-solution')]
+            'accent_color' => ['type' => 'string', 'default' => '#3b82f6', 'desc' => __('Custom theme color for lookup button & header.', 'nahian-tour-travel-booking-solution')]
         ]
     ],
     [
         'tag'         => '[nttbs_search_bar]',
         'category'    => __('Search & Utility', 'nahian-tour-travel-booking-solution'),
         'badge'       => __('Omni Search', 'nahian-tour-travel-booking-solution'),
-        'badge_color' => '#f59e0b',
+        'badge_color' => 'var(--nttbs-amber)',
         'title'       => __('Global Floating Search Bar Widget', 'nahian-tour-travel-booking-solution'),
         'description' => __('Horizontal multi-field search bar for Homepage hero banners. Includes Destination dropdown, Datepicker, and Passenger counter.', 'nahian-tour-travel-booking-solution'),
         'example'     => '[nttbs_search_bar style="horizontal" target_url="/tours/"]',
@@ -76,7 +76,7 @@ $shortcode_definitions = [
         'tag'         => '[nttbs_featured_deals]',
         'category'    => __('Catalog & Booking', 'nahian-tour-travel-booking-solution'),
         'badge'       => __('Promotion Carousel', 'nahian-tour-travel-booking-solution'),
-        'badge_color' => 'var(--c-rose)',
+        'badge_color' => 'var(--nttbs-rose)',
         'title'       => __('Promotional & Limited-Seat Expeditions', 'nahian-tour-travel-booking-solution'),
         'description' => __('Highlights discounted packages or upcoming departures with low remaining availability to drive booking urgency.', 'nahian-tour-travel-booking-solution'),
         'example'     => '[nttbs_featured_deals badge="LIMITED SEATS" count="4"]',
@@ -87,9 +87,9 @@ $shortcode_definitions = [
     ],
     [
         'tag'         => '[nttbs_booking_form]',
-        'category'    => __('Booking & Checkout', 'nahian-tour-travel-booking-solution'),
+        'category'    => __('Catalog & Booking', 'nahian-tour-travel-booking-solution'),
         'badge'       => __('Direct Conversion', 'nahian-tour-travel-booking-solution'),
-        'badge_color' => '#0284c7',
+        'badge_color' => 'var(--nttbs-primary)',
         'title'       => __('Direct Single Tour Booking Checkout', 'nahian-tour-travel-booking-solution'),
         'description' => __('Embeds a complete standalone reservation drawer or inline form pre-selected to an expedition ID for targeted landing pages.', 'nahian-tour-travel-booking-solution'),
         'example'     => '[nttbs_booking_form trip_id="12" show_deposit="true"]',
@@ -105,33 +105,33 @@ $shortcode_definitions = [
 .nttbs-shortcode-workspace {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    animation: nteFadeIn 0.25s ease-out;
+    gap: 24px;
+    animation: nttbsFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
-@keyframes nteFadeIn {
-    from { opacity: 0; transform: translateY(4px); }
+@keyframes nttbsFadeIn {
+    from { opacity: 0; transform: translateY(6px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
 /* Hero Header */
 .nttbs-shortcode-hero {
-    background: var(--bg-surface);
-    border: 1px solid var(--border-light);
-    border-radius: 12px;
+    background: var(--nttbs-bg-card);
+    border: 1px solid var(--nttbs-border);
+    border-radius: 14px;
     padding: 24px 28px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--nttbs-shadow-sm);
     gap: 20px;
 }
 .nttbs-hero-badge {
     display: inline-block;
     font-size: 11px;
     font-weight: 800;
-    color: var(--c-blue);
-    background: var(--c-blue-bg);
-    border: 1px solid var(--c-blue-border);
+    color: var(--nttbs-primary-dark);
+    background: var(--nttbs-primary-subtle);
+    border: 1px solid var(--nttbs-primary-border);
     padding: 3px 9px;
     border-radius: 6px;
     text-transform: uppercase;
@@ -140,40 +140,41 @@ $shortcode_definitions = [
 }
 .nttbs-hero-heading {
     font-size: 22px;
-    font-weight: 900;
-    color: var(--text-main);
+    font-weight: 800;
+    color: var(--nttbs-text-heading);
     margin: 0 0 6px 0;
     letter-spacing: -0.3px;
 }
 .nttbs-hero-sub {
     font-size: 13px;
-    color: var(--text-muted);
+    color: var(--nttbs-text-muted);
     margin: 0;
     line-height: 1.5;
 }
 .nttbs-hero-stat {
-    background: var(--bg-subtle);
-    border: 1px solid var(--border-light);
-    border-radius: 10px;
-    padding: 14px 20px;
+    background: var(--nttbs-bg-body);
+    border: 1px solid var(--nttbs-border);
+    border-radius: 12px;
+    padding: 16px 22px;
     text-align: center;
-    min-width: 120px;
+    min-width: 130px;
     flex-shrink: 0;
 }
 .nttbs-stat-number {
     display: block;
-    font-size: 26px;
-    font-weight: 900;
-    color: var(--c-blue);
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--nttbs-primary-dark);
     line-height: 1;
+    font-family: 'JetBrains Mono', monospace;
 }
 .nttbs-stat-label {
     font-size: 11px;
     font-weight: 700;
-    color: var(--text-muted);
+    color: var(--nttbs-text-muted);
     text-transform: uppercase;
     letter-spacing: 0.4px;
-    margin-top: 5px;
+    margin-top: 6px;
     display: block;
 }
 
@@ -184,10 +185,11 @@ $shortcode_definitions = [
     align-items: center;
     gap: 16px;
     flex-wrap: wrap;
-    background: var(--bg-surface);
-    border: 1px solid var(--border-light);
+    background: var(--nttbs-bg-card);
+    border: 1px solid var(--nttbs-border);
     padding: 12px 18px;
-    border-radius: 10px;
+    border-radius: 12px;
+    box-shadow: var(--nttbs-shadow-xs);
 }
 .nttbs-filter-tabs {
     display: flex;
@@ -197,35 +199,38 @@ $shortcode_definitions = [
 .nttbs-tab-btn {
     background: transparent;
     border: 1px solid transparent;
-    color: var(--text-muted);
-    padding: 6px 12px;
-    border-radius: 6px;
-    font-size: 12px;
+    color: var(--nttbs-text-muted);
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 12.5px;
     font-weight: 700;
     cursor: pointer;
-    transition: all 0.15s ease;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .nttbs-tab-btn:hover {
-    background: var(--bg-subtle);
-    color: var(--text-main);
+    background: var(--nttbs-bg-hover);
+    color: var(--nttbs-text-heading);
 }
 .nttbs-tab-btn.active {
-    background: var(--c-blue-bg);
-    border-color: var(--c-blue-border);
-    color: var(--c-blue);
+    background: var(--nttbs-primary-subtle);
+    border-color: var(--nttbs-primary-border);
+    color: var(--nttbs-primary-dark);
 }
 .nttbs-search-field {
-    width: 250px;
-    padding: 7px 12px;
-    font-size: 12px;
-    border-radius: 6px;
-    border: 1px solid var(--border-light);
-    background: var(--bg-subtle);
-    color: var(--text-main);
+    width: 260px;
+    padding: 8px 14px;
+    font-size: 12.5px;
+    border-radius: 8px;
+    border: 1px solid var(--nttbs-border);
+    background: var(--nttbs-bg-body);
+    color: var(--nttbs-text-heading);
     outline: none;
+    transition: all 0.15s ease;
 }
 .nttbs-search-field:focus {
-    border-color: var(--c-blue);
+    border-color: var(--nttbs-primary);
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
 
 /* Cards Stack */
@@ -235,22 +240,23 @@ $shortcode_definitions = [
     gap: 20px;
 }
 .nttbs-sc-card {
-    background: var(--bg-surface);
-    border: 1px solid var(--border-light);
-    border-radius: 12px;
+    background: var(--nttbs-bg-card);
+    border: 1px solid var(--nttbs-border);
+    border-radius: 14px;
     overflow: hidden;
-    box-shadow: var(--shadow-sm);
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: var(--nttbs-shadow-sm);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 .nttbs-sc-card:hover {
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--nttbs-shadow-md);
+    transform: translateY(-2px);
 }
 
 /* Card Header */
 .nttbs-sc-topbar {
-    padding: 14px 20px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(0,0,0,0.02) 100%);
-    border-bottom: 1px solid var(--border-light);
+    padding: 14px 22px;
+    background: linear-gradient(180deg, #ffffff 0%, var(--nttbs-bg-body) 100%);
+    border-bottom: 1px solid var(--nttbs-border);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -263,61 +269,62 @@ $shortcode_definitions = [
     flex-wrap: wrap;
 }
 .nttbs-tag-pill {
-    background: var(--bg-surface);
-    border: 1px solid var(--border-light);
+    background: var(--nttbs-bg-card);
+    border: 1px solid var(--nttbs-border);
     font-size: 11px;
     font-weight: 700;
-    color: var(--text-muted);
+    color: var(--nttbs-text-muted);
     padding: 3px 9px;
-    border-radius: 4px;
+    border-radius: 6px;
 }
 .nttbs-badge-pill {
     font-size: 11px;
     font-weight: 800;
-    padding: 3px 8px;
+    padding: 3px 9px;
     border-radius: 6px;
     text-transform: uppercase;
     letter-spacing: 0.3px;
     border: 1px solid transparent;
 }
 .nttbs-sc-tagname code {
-    background: var(--bg-subtle);
-    border: 1px solid var(--border-light);
-    color: var(--text-main);
+    background: var(--nttbs-bg-body);
+    border: 1px solid var(--nttbs-border);
+    color: var(--nttbs-text-heading);
     font-weight: 800;
     font-size: 12px;
     padding: 3px 8px;
     border-radius: 6px;
-    font-family: ui-monospace, monospace;
+    font-family: 'JetBrains Mono', monospace;
 }
 
 /* Card Body */
 .nttbs-sc-body {
-    padding: 20px;
+    padding: 22px;
 }
 .nttbs-sc-title {
-    font-size: 15px;
+    font-size: 15.5px;
     font-weight: 800;
-    color: var(--text-main);
+    color: var(--nttbs-text-heading);
     margin: 0 0 6px 0;
+    letter-spacing: -0.2px;
 }
 .nttbs-sc-desc {
     font-size: 13px;
-    color: var(--text-muted);
+    color: var(--nttbs-text-muted);
     line-height: 1.5;
-    margin: 0 0 16px 0;
+    margin: 0 0 18px 0;
 }
 
 /* Snippet Console Bar */
 .nttbs-snippet-bar {
     background: #0f172a;
-    border: 1px solid var(--border-light);
+    border: 1px solid var(--nttbs-border);
     border-radius: 10px;
-    padding: 10px 14px;
+    padding: 10px 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 18px;
+    margin-bottom: 20px;
     gap: 12px;
 }
 .nttbs-snippet-code {
@@ -329,13 +336,13 @@ $shortcode_definitions = [
 .nttbs-code-prefix {
     color: #38bdf8;
     font-weight: 900;
-    font-family: ui-monospace, monospace;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 14px;
     user-select: none;
 }
 .nttbs-code-val {
     color: #f8fafc;
-    font-family: ui-monospace, monospace;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 13px;
     font-weight: 600;
     white-space: nowrap;
@@ -344,9 +351,9 @@ $shortcode_definitions = [
     background: rgba(255, 255, 255, 0.12);
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: #ffffff;
-    border-radius: 6px;
-    padding: 6px 12px;
-    font-size: 11px;
+    border-radius: 8px;
+    padding: 7px 14px;
+    font-size: 11.5px;
     font-weight: 700;
     cursor: pointer;
     display: inline-flex;
@@ -365,68 +372,68 @@ $shortcode_definitions = [
 }
 .nttbs-params-label {
     display: block;
-    font-size: 11px;
+    font-size: 11.5px;
     font-weight: 800;
     text-transform: uppercase;
-    color: var(--text-muted);
+    color: var(--nttbs-text-muted);
     letter-spacing: 0.5px;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 .nttbs-param-table {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
-    background: var(--bg-subtle);
-    border: 1px solid var(--border-light);
-    border-radius: 8px;
+    background: var(--nttbs-bg-body);
+    border: 1px solid var(--nttbs-border);
+    border-radius: 10px;
     overflow: hidden;
 }
 .nttbs-param-table th {
-    background: var(--bg-surface);
-    padding: 9px 14px;
+    background: var(--nttbs-bg-card);
+    padding: 10px 16px;
     font-size: 11px;
     font-weight: 800;
-    color: var(--text-muted);
+    color: var(--nttbs-text-muted);
     text-transform: uppercase;
     letter-spacing: 0.5px;
     text-align: left;
-    border-bottom: 1px solid var(--border-light);
+    border-bottom: 1px solid var(--nttbs-border);
 }
 .nttbs-param-table td {
-    padding: 11px 14px;
-    font-size: 12px;
-    border-bottom: 1px solid var(--border-light);
-    color: var(--text-main);
+    padding: 12px 16px;
+    font-size: 12.5px;
+    border-bottom: 1px solid var(--nttbs-border);
+    color: var(--nttbs-text-body);
     vertical-align: middle;
 }
 .nttbs-param-table tr:last-child td {
     border-bottom: none;
 }
 .nttbs-attr-code {
-    background: var(--bg-surface);
-    border: 1px solid var(--border-light);
-    color: var(--c-purple);
+    background: var(--nttbs-bg-card);
+    border: 1px solid var(--nttbs-border);
+    color: var(--nttbs-purple);
     font-weight: 800;
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-family: ui-monospace, monospace;
+    padding: 3px 7px;
+    border-radius: 5px;
+    font-family: 'JetBrains Mono', monospace;
 }
 .nttbs-type-chip {
     font-size: 11px;
     font-weight: 700;
-    color: var(--text-muted);
-    background: var(--bg-surface);
-    border: 1px solid var(--border-light);
-    padding: 2px 6px;
+    color: var(--nttbs-text-muted);
+    background: var(--nttbs-bg-card);
+    border: 1px solid var(--nttbs-border);
+    padding: 2px 7px;
     border-radius: 4px;
 }
 .nttbs-default-chip {
-    font-family: ui-monospace, monospace;
+    font-family: 'JetBrains Mono', monospace;
     font-weight: 800;
-    color: var(--text-main);
+    color: var(--nttbs-text-heading);
 }
 .nttbs-desc-cell {
-    color: var(--text-muted);
+    color: var(--nttbs-text-muted);
 }
 
 @media (max-width: 768px) {
@@ -479,15 +486,15 @@ $shortcode_definitions = [
 
     <!-- SHORTCODES FEED -->
     <div class="nttbs-cards-stack" id="nttbs-cards-container">
-        <?php foreach ($shortcode_definitions as $index =>$sc): ?>
-            <div class="nttbs-sc-card" data-category="<?php echo esc_attr($sc['category']); ?>" data-search="<?php echo esc_attr(strtolower($sc['tag'] . ' ' . $sc['title'] . ' ' .$sc['category'])); ?>">
+        <?php foreach ($shortcode_definitions as $index => $sc): ?>
+            <div class="nttbs-sc-card" data-category="<?php echo esc_attr($sc['category']); ?>" data-search="<?php echo esc_attr(strtolower($sc['tag'] . ' ' . $sc['title'] . ' ' . $sc['category'])); ?>">
                 <!-- Top Meta Bar -->
                 <div class="nttbs-sc-topbar">
                     <div class="nttbs-sc-tags">
                         <span class="nttbs-tag-pill" style="border-left: 3px solid <?php echo esc_attr($sc['badge_color']); ?>;">
                             <?php echo esc_html($sc['category']); ?>
                         </span>
-                        <span class="nttbs-badge-pill" style="background-color: var(--c-blue-bg); color: <?php echo esc_attr($sc['badge_color']); ?>; border-color: var(--border-light);">
+                        <span class="nttbs-badge-pill" style="background-color: var(--nttbs-primary-subtle); color: <?php echo esc_attr($sc['badge_color']); ?>; border-color: var(--nttbs-border);">
                             <?php echo esc_html($sc['badge']); ?>
                         </span>
                     </div>
@@ -528,7 +535,7 @@ $shortcode_definitions = [
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($sc['attributes'] as $attr =>$meta): ?>
+                                    <?php foreach ($sc['attributes'] as $attr => $meta): ?>
                                         <tr>
                                             <td><code class="nttbs-attr-code"><?php echo esc_html($attr); ?></code></td>
                                             <td><span class="nttbs-type-chip"><?php echo esc_html($meta['type']); ?></span></td>
@@ -570,8 +577,8 @@ function nttbsCopySnippet(elId, btn) {
 }
 
 function nttbsApplyCopySuccess(btn, originalHTML) {
-    btn.style.background = 'var(--c-emerald, #059669)';
-    btn.style.borderColor = 'var(--c-emerald, #059669)';
+    btn.style.background = 'var(--nttbs-emerald, #10b981)';
+    btn.style.borderColor = 'var(--nttbs-emerald, #10b981)';
     btn.innerHTML = `
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="20 6 9 17 4 12"></polyline>
